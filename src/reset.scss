@@ -1,0 +1,91 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+}
+
+/* Remove default padding */
+ul,
+ol {
+  padding: 0;
+}
+
+/* Remove list styles on ul, ol elements */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove default font styles */
+body {
+  font-family: var(--main-font-family);
+}
+
+/* Remove default outline styles */
+button,
+input,
+textarea,
+select,
+a {
+  outline: none;
+}
+
+/* Reset form elements */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Remove default border */
+button,
+input {
+  border: none;
+}
+
+/* Remove default background */
+button,
+input {
+  background-color: transparent;
+}
+
+/* Set default vertical alignment */
+button,
+input,
+select {
+  vertical-align: middle;
+}
+
+/* Reset anchor text decoration */
+a {
+  text-decoration: none;
+}
+
+/* Reset image border */
+img {
+  border-style: none;
+}
+
+/* Reset button styles */
+button {
+  cursor: pointer;
+  padding: 0;
+}
