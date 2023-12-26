@@ -1,6 +1,9 @@
+// react
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
+// styling
+import './reset.scss';
+import './base.scss';
 
 const basename = process.env.PUBLIC_URL;
 
