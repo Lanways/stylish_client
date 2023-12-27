@@ -1,6 +1,8 @@
 // react
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// pages
+import MainPage from './pages/mainPage/MainPage';
 // styling
 import './reset.scss';
 import './base.scss';
@@ -11,7 +13,9 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter basename={basename}>
-        <Routes></Routes>
+        <Routes>
+          <Route path='/main' element={<MainPage />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
