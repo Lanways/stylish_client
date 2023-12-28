@@ -1,0 +1,30 @@
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .title {
+    align-self: center;
+    padding: 34px 5%;
+  }
+
+  .item-sec {
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mainPage {
+    .sec-title {
+      font-size: 30px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .mainPage {
+    .item-sec {
+      padding: 0 3%;
+    }
+  }
+}
