@@ -1,0 +1,32 @@
+.itemCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 258px;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .item-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    .item-title {
+      margin-top: 10px;
+    }
+
+    .price {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .regular-price {
+        color: var(--text-gray);
+        text-decoration: line-through;
+      }
+    }
+  }
+}

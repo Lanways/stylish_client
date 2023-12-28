@@ -1,0 +1,33 @@
+.burgerMenu {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+
+  .menu-overlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    //opacity: 30%;
+  }
+
+  .menu-container {
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    margin-left: auto;
+    background-color: white;
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .burgerMenu {
+    display: none;
+  }
+}

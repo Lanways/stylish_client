@@ -1,0 +1,45 @@
+.headerMobile {
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  height: 60px;
+  border-bottom: 1px solid var(--border-gray);
+
+  div .fa-icon {
+    font-size: 18px;
+    color: #8d8d8d;
+    cursor: pointer;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    gap: 2px;
+    cursor: pointer;
+
+    h1 {
+      font-family: 'Montserrat';
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    /*img {
+      width: 46px;
+      height: 100%;
+      cursor: pointer;
+    }*/
+  }
+
+  .icon-sec1,
+  .icon-sec2 {
+    display: flex;
+    gap: 18px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .headerMobile {
+    display: none;
+  }
+}

@@ -1,0 +1,59 @@
+.headerDestop {
+  display: flex;
+  align-items: center;
+  padding: 0 3%;
+  height: 78px;
+  border-bottom: 1px solid var(--border-gray);
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+
+    h1 {
+      font-family: 'Montserrat';
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    /*img {
+      width: 46px;
+      height: 100%;
+      cursor: pointer;
+    }*/
+  }
+
+  .menu-sec {
+    display: flex;
+    gap: 14px;
+    margin-left: 40px;
+
+    .menu-tile {
+      cursor: pointer;
+
+      &:hover {
+        color: var(--text-gray);
+        //text-decoration: underline;
+        border-bottom: 1px solid var(--text-gray);
+      }
+    }
+  }
+
+  .icons-sec {
+    margin-left: auto;
+    display: flex;
+    gap: 18px;
+    .fa-icon {
+      font-size: 18px;
+      color: #8d8d8d;
+      cursor: pointer;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .headerDestop {
+    display: none;
+  }
+}
