@@ -82,6 +82,9 @@ a {
 /* Reset image border */
 img {
   border-style: none;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Reset button styles */

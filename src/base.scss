@@ -10,6 +10,35 @@ body {
   --main-font-family: 'Noto Sans TC', 'Montserrat', sans-serif;
 
   /* 品牌色 */
+  --text-gray: #707070;
 
   /* 輔助色 */
+  --border-gray: #e3e3e3;
+}
+
+/* 字體大小定義 */
+
+.bold-16 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.medium-40 {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.medium-20 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.medium-14 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.regular-13 {
+  font-size: 13px;
+  font-weight: 400;
 }
