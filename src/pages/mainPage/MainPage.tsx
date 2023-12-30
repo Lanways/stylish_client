@@ -45,7 +45,9 @@ const MainPage: React.FC = () => {
         <h1 className='medium-20 sec-title'>本月新品</h1>
       </div>
       <div className='item-sec'>
-        <ItemCard />
+        {products?.map?.((product) => {
+          return <ItemCard productInfo={product} />;
+        })}
       </div>
     </div>
   );
