@@ -5,11 +5,14 @@
 
   .title {
     align-self: center;
-    padding: 34px 5%;
+    margin: 34px 0;
   }
 
   .item-sec {
-    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px 16px;
+    padding: 0 28px;
   }
 }
 
@@ -18,13 +21,21 @@
     .sec-title {
       font-size: 30px;
     }
+
+    .item-sec {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 }
 
 @media only screen and (min-width: 1024px) {
   .mainPage {
     .item-sec {
-      padding: 0 3%;
+      padding: 0 90px;
+    }
+
+    .item-sec {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 }
