@@ -24,8 +24,12 @@ const HeaderDestop: React.FC = () => {
         <h1>S.tylish</h1>
       </div>
       <ul className='menu-sec medium-14'>
-        {titles.map((title) => {
-          return <li className='menu-tile'>{title}</li>;
+        {titles.map((title, i) => {
+          return (
+            <li key={`product-${i}`} className='menu-tile'>
+              {title}
+            </li>
+          );
         })}
       </ul>
       <div className='icons-sec'>
