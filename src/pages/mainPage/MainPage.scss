@@ -8,11 +8,18 @@
     margin: 34px 0;
   }
 
-  .item-sec {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 24px 16px;
+  .main-content {
     padding: 0 28px;
+
+    .side-part {
+      display: none;
+    }
+
+    .item-sec {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 24px 16px;
+    }
   }
 }
 
@@ -22,20 +29,28 @@
       font-size: 30px;
     }
 
-    .item-sec {
-      grid-template-columns: repeat(3, 1fr);
+    .main-content {
+      .item-sec {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
   }
 }
 
 @media only screen and (min-width: 1024px) {
   .mainPage {
-    .item-sec {
+    .main-content {
+      display: flex;
       padding: 0 90px;
-    }
+      gap: 5%;
 
-    .item-sec {
-      grid-template-columns: repeat(4, 1fr);
+      .side-part {
+        display: contents;
+      }
+
+      .item-sec {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
   }
 }

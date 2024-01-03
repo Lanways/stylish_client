@@ -1,3 +1,5 @@
+import './SideMenu.scss';
+
 const sideMenuItem: { title: string; quantity: string }[] = [
   {
     title: '所有商品',
@@ -35,11 +37,12 @@ const sideMenuItem: { title: string; quantity: string }[] = [
 
 const SideMenu: React.FC = () => {
   return (
-    <div>
+    <div className='side-menu'>
+      <h3 className='bold-16'>商品分類</h3>
       <ul>
-        {sideMenuItem.map((item) => {
+        {sideMenuItem.map((item, i) => {
           return (
-            <li>
+            <li className='regular-14' key={`side-menu-title-${i}`}>
               <span>{item.title}</span>
               <span>{item.quantity}</span>
             </li>
