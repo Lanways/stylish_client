@@ -1,50 +1,32 @@
+//types
+import { Category, Product } from '../../types/type';
 import './SideMenu.scss';
 
-const sideMenuItem: { title: string; quantity: string }[] = [
-  {
-    title: '所有商品',
-    quantity: '1',
-  },
-  {
-    title: '本月新品',
-    quantity: '2',
-  },
-  {
-    title: '本月新品',
-    quantity: '3',
-  },
-  {
-    title: '夏日渡假風',
-    quantity: '4',
-  },
-  {
-    title: '熱銷商品',
-    quantity: '5',
-  },
-  {
-    title: '現貨商品區',
-    quantity: '6',
-  },
-  {
-    title: '鞋子配件等',
-    quantity: '7',
-  },
-  {
-    title: '限時優惠',
-    quantity: '8',
-  },
-];
+interface SideMenuProps {
+  setMenuId: (id: number) => void;
+  categoryAll: Category;
+  products: Product[];
+}
 
-const SideMenu: React.FC = () => {
+const SideMenu: React.FC<SideMenuProps> = (props) => {
   return (
     <div className='side-menu'>
       <h3 className='bold-16'>商品分類</h3>
       <ul>
-        {sideMenuItem.map((item, i) => {
+        {props?.categoryAll?.map?.((type) => {
           return (
-            <li className='regular-14' key={`side-menu-title-${i}`}>
-              <span>{item.title}</span>
-              <span>{item.quantity}</span>
+            <li
+              className='regular-14'
+              key={`${type.id}`}
+              onClick={() => {
+                props?.setMenuId(type.id);
+              }}
+            >
+              <span>{type.name}</span>
+              <span>{`${
+                props?.products?.filter((item) => item.categoryId === type.id)
+                  .length
+              }`}</span>
             </li>
           );
         })}
