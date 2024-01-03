@@ -5,21 +5,16 @@ import {
   faMessage,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
+//types
+import { Category } from '../../types/type';
 // styling
 import './HeaderDestop.scss';
 
-const titles = [
-  '所有商品',
-  '本月新品',
-  '夏日渡假風',
-  '限時優惠',
-  '熱銷商品',
-  '現貨商品區',
-];
-
-type HeaderMobileProps = {
+interface HeaderMobileProps {
   setIsShow: (show: boolean) => void;
-};
+  setMenuId: (id: number) => void;
+  categoryAll: Category;
+}
 
 const HeaderDestop: React.FC<HeaderMobileProps> = (props) => {
   return (
@@ -28,14 +23,17 @@ const HeaderDestop: React.FC<HeaderMobileProps> = (props) => {
         <h1>S.tylish</h1>
       </div>
       <ul className='menu-sec medium-14'>
-        {titles.map((title, i) => {
+        {props.categoryAll?.map?.((type) => {
           return (
             <li
-              key={`menu-title-${i}`}
+              key={`${type.id}`}
               className='menu-tile'
-              onClick={() => props.setIsShow(true)}
+              onClick={() => {
+                props?.setIsShow(true);
+                props?.setMenuId(type.id);
+              }}
             >
-              {title}
+              {type.name}
             </li>
           );
         })}
