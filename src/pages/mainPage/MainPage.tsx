@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react';
 import HeaderMobile from '../../components/headerMobile/HeaderMobile';
 import HeaderDestop from '../../components/headerDestop/HeaderDestop';
 import ItemCard from '../../components/itemCard/ItemCard';
+import SideMenu from '../../components/sideMenu/SideMenu';
 // api
 import { getProducts } from '../../api/main';
 // styling
 import './MainPage.scss';
 
 const MainPage: React.FC = () => {
+  // states
   const [products, setProducts] = useState<
     {
       id: number;
@@ -24,6 +26,12 @@ const MainPage: React.FC = () => {
       additionalImage: string;
     }[]
   >([]);
+
+  const [IsSideMenuShow, setIsSideMenuShow] = useState(false);
+
+  const IsSideMenuShowHandler = (show: boolean) => {
+    setIsSideMenuShow(show);
+  };
 
   useEffect(() => {
     const getProductsAsync = async () => {
@@ -40,14 +48,17 @@ const MainPage: React.FC = () => {
   return (
     <div className='mainPage'>
       <HeaderMobile />
-      <HeaderDestop />
+      <HeaderDestop setIsShow={IsSideMenuShowHandler} />
       <div className='title'>
         <h1 className='medium-20 sec-title'>本月新品</h1>
       </div>
-      <div className='item-sec'>
-        {products?.map?.((product) => {
-          return <ItemCard productInfo={product} />;
-        })}
+      <div className='main-content'>
+        <div className='side-part'>{IsSideMenuShow && <SideMenu />}</div>
+        <div className='item-sec'>
+          {products?.map?.((product) => {
+            return <ItemCard productInfo={product} />;
+          })}
+        </div>
       </div>
     </div>
   );
