@@ -17,7 +17,11 @@ const titles = [
   '現貨商品區',
 ];
 
-const HeaderDestop: React.FC = () => {
+type HeaderMobileProps = {
+  setIsShow: (show: boolean) => void;
+};
+
+const HeaderDestop: React.FC<HeaderMobileProps> = (props) => {
   return (
     <header className='headerDestop'>
       <div className='logo'>
@@ -26,7 +30,11 @@ const HeaderDestop: React.FC = () => {
       <ul className='menu-sec medium-14'>
         {titles.map((title, i) => {
           return (
-            <li key={`product-${i}`} className='menu-tile'>
+            <li
+              key={`menu-title-${i}`}
+              className='menu-tile'
+              onClick={() => props.setIsShow(true)}
+            >
               {title}
             </li>
           );
