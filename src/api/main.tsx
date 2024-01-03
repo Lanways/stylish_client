@@ -10,3 +10,12 @@ export const getProducts = async () => {
     console.error('[Get Products Data failed]: ', error);
   }
 };
+
+export const getCategory = async () => {
+  try {
+    const { data } = await axios.get(`${baseURL}api/category`);
+    return data.data;
+  } catch (error) {
+    console.error('[Get Products Data failed]: ', error);
+  }
+};
