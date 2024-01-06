@@ -1,6 +1,7 @@
 // react
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 // pages
 import HomePage from './pages/homePage/HomePage';
 import MainPage from './pages/mainPage/MainPage';
@@ -9,16 +10,19 @@ import './reset.scss';
 import './base.scss';
 
 const basename = process.env.PUBLIC_URL;
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <div className='App'>
-      <BrowserRouter basename={basename}>
-        <Routes>
-          <Route path='*' element={<HomePage />} />
-          <Route path='/main' element={<MainPage />} />
-        </Routes>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter basename={basename}>
+          <Routes>
+            <Route path='*' element={<HomePage />} />
+            <Route path='/main' element={<MainPage />} />
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
     </div>
   );
 }

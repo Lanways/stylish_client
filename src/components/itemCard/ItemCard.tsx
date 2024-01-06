@@ -1,26 +1,17 @@
 // img
 import Sample from '../../assets/item-sample.png';
+// types
+import { Product } from '../../types/type';
 //styling
 import './ItemCard.scss';
 
 interface ProductProps {
-  productInfo: {
-    id: number;
-    name: string;
-    price: number;
-    createdAt: string;
-    updatedAt: string;
-    image: string;
-    sizeOptions: string;
-    quantity: number;
-    description: string;
-    additionalImage: string;
-  };
+  productInfo: Product;
 }
 
 const ItemCard: React.FC<ProductProps> = (props) => {
   return (
-    <div key={props.productInfo.id} className='itemCard'>
+    <div className='itemCard'>
       <div>
         <img src={props.productInfo.image} alt='logo' />
       </div>
