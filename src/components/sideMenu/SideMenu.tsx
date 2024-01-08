@@ -3,7 +3,7 @@ import { Category, Product } from '../../types/type';
 import './SideMenu.scss';
 
 interface SideMenuProps {
-  setMenuId: (id: number) => void;
+  setMenuId: (id: string) => void;
   categoryAll: Category;
   products: Product[];
 }
@@ -19,7 +19,7 @@ const SideMenu: React.FC<SideMenuProps> = (props) => {
               className='regular-14'
               key={`${type.id}`}
               onClick={() => {
-                props?.setMenuId(type.id);
+                props?.setMenuId(`&categoryId=${type.id}`);
               }}
             >
               <span>{type.name}</span>

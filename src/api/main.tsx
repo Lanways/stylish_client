@@ -1,15 +1,17 @@
 import axios from 'axios';
+//types
+import { ProductParam } from '../types/type';
 
 const baseURL = 'https://stylish-api.onrender.com/';
 
-export const getProducts = async (
-  pageParam: number = 1,
-  limit: number = 5,
-  categoryId: number = 1
-) => {
+export const getProducts = async ({
+  page = 1,
+  limit = '',
+  categoryId = '',
+}: ProductParam) => {
   try {
     const { data } = await axios.get(
-      `${baseURL}api/product/?page=${pageParam}&limit=${limit}&categoryId=${categoryId}`
+      `${baseURL}api/product/?page=${page}${limit}${categoryId}`
     );
     console.log(data.data);
     return data.data;
