@@ -6,12 +6,12 @@ import HeaderMobile from '../../components/headerMobile/HeaderMobile';
 import HeaderDestop from '../../components/headerDestop/HeaderDestop';
 import ItemCard from '../../components/itemCard/ItemCard';
 import SideMenu from '../../components/sideMenu/SideMenu';
+import ProductFilter from '../../components/productFilter/ProductFilter';
 // api
 import { getProducts } from '../../api/main';
 import { getCategory } from '../../api/main';
 // types
 import { Product, Category, ProductParam } from '../../types/type';
-
 // styling
 import './MainPage.scss';
 //import bootstrap
@@ -130,6 +130,7 @@ const MainPage: React.FC = () => {
       <div className='title'>
         <h1 className='medium-20 sec-title'>本月新品</h1>
       </div>
+      <ProductFilter />
       <div className='main-content'>
         <div className='side-part'>
           {IsSideMenuShow && (
