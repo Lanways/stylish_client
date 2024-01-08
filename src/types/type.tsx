@@ -18,3 +18,9 @@ export type Category = {
   name: string;
   updatedAt: string;
 }[];
+
+export type ProductParam = {
+  page: number | undefined;
+  limit: string;
+  categoryId: string;
+};

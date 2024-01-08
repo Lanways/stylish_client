@@ -1,4 +1,4 @@
-// fontaswesome
+//fontaswesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCartShopping,
@@ -12,7 +12,7 @@ import './HeaderDestop.scss';
 
 interface HeaderMobileProps {
   setIsShow: (show: boolean) => void;
-  setMenuId: (id: number) => void;
+  setMenuId: (id: string) => void;
   categoryAll: Category;
 }
 
@@ -30,7 +30,7 @@ const HeaderDestop: React.FC<HeaderMobileProps> = (props) => {
               className='menu-tile'
               onClick={() => {
                 props?.setIsShow(true);
-                props?.setMenuId(type.id);
+                props?.setMenuId(`&categoryId=${type.id}`);
               }}
             >
               {type.name}

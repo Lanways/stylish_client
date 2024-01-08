@@ -9,6 +9,8 @@
   }
 
   .main-content {
+    display: flex;
+    flex-direction: column;
     padding: 0 28px;
 
     .side-part {
@@ -19,6 +21,11 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 24px 16px;
+    }
+
+    .pagination {
+      align-self: center;
+      margin-top: 20px;
     }
   }
 }
@@ -40,7 +47,7 @@
 @media only screen and (min-width: 1024px) {
   .mainPage {
     .main-content {
-      display: flex;
+      display: grid;
       padding: 0 90px;
       gap: 5%;
 
