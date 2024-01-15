@@ -27,9 +27,10 @@ const MainPage: React.FC = () => {
   const [categoryId, setCategoryId] = useState('');
   const [limit, setLimit] = useState('&limit=20');
   const [itemOrderBy, setItemOrderBy] = useState('all');
+  const [keywords, setKeywords] = useState(''); // searchBar
+  const [searchedItem, setSearchedItem] = useState(''); // searchBar
 
   //pagination and API
-
   const {
     isLoading,
     isError,
@@ -106,6 +107,18 @@ const MainPage: React.FC = () => {
         ));
       }
       break;
+    case `${searchedItem}`:
+      {
+        const results = items?.products?.filter((item: Product) =>
+          item?.name
+            .toLowerCase()
+            .includes(searchedItem.trim().toLocaleLowerCase())
+        );
+        content = results?.map?.((item: Product) => (
+          <ItemCard key={item.id} productInfo={item} />
+        ));
+      }
+      break;
     default: {
       break;
     }
@@ -149,6 +162,12 @@ const MainPage: React.FC = () => {
     setCategoryId(id);
   };
 
+  const searchBarHandler = () => {
+    setCategoryId('');
+    setSearchedItem(keywords);
+    setItemOrderBy(keywords);
+  }; // searchbar
+
   useEffect(() => {
     const getAllProductsAsync = async () => {
       const param: ProductParam = {
@@ -188,7 +207,13 @@ const MainPage: React.FC = () => {
       <div className='title'>
         <h1 className='medium-20 sec-title'>本月新品</h1>
       </div>
-      <ProductFilter setLimit={setLimit} setItemOrderBy={setItemOrderBy} />
+      <ProductFilter
+        setLimit={setLimit}
+        setItemOrderBy={setItemOrderBy}
+        setKeywords={setKeywords}
+        keywords={keywords}
+        searchBarHandler={searchBarHandler}
+      />
       <div className='main-content'>
         <div className='side-part'>
           {IsSideMenuShow && (

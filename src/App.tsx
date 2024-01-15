@@ -15,16 +15,18 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <div className='App'>
-      <React.Fragment>
-        <QueryClientProvider client={queryClient}>
-          <BrowserRouter basename={basename}>
-            <Routes>
-              <Route path='*' element={<HomePage />} />
-              <Route path='/main' element={<MainPage />} />
-            </Routes>
-          </BrowserRouter>
-        </QueryClientProvider>
-      </React.Fragment>
+      <React.StrictMode>
+        <React.Fragment>
+          <QueryClientProvider client={queryClient}>
+            <BrowserRouter basename={basename}>
+              <Routes>
+                <Route path='*' element={<HomePage />} />
+                <Route path='/main' element={<MainPage />} />
+              </Routes>
+            </BrowserRouter>
+          </QueryClientProvider>
+        </React.Fragment>
+      </React.StrictMode>
     </div>
   );
 }

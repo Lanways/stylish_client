@@ -10,6 +10,9 @@ import './ProductFilter.scss';
 interface ProductFilterProps {
   setLimit: (limit: string) => void;
   setItemOrderBy: (sortBy: string) => void;
+  setKeywords: (keyword: string) => void;
+  keywords: string;
+  searchBarHandler: () => void;
 }
 
 const ProductFilter: React.FC<ProductFilterProps> = (props) => {
@@ -18,12 +21,19 @@ const ProductFilter: React.FC<ProductFilterProps> = (props) => {
       <div className='search-bar'>
         <input
           className='regular-14'
-          type='search'
+          type='text'
           placeholder={'商品關鍵字'}
-          value=''
-          onChange={() => {}}
+          value={props?.keywords}
+          onChange={(e) => {
+            props?.setKeywords(e.target.value);
+          }}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              props.searchBarHandler();
+            }
+          }}
         />
-        <button>
+        <button onClick={props.searchBarHandler}>
           <FontAwesomeIcon className='search-icon' icon={faMagnifyingGlass} />
         </button>
       </div>
@@ -58,6 +68,12 @@ const ProductFilter: React.FC<ProductFilterProps> = (props) => {
                 onClick={() => props?.setItemOrderBy('lowest')}
               >
                 價格低至高
+              </Dropdown.Item>
+              <Dropdown.Item
+                href='#/action-1'
+                onClick={() => props?.setItemOrderBy('all')}
+              >
+                所有商品
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
