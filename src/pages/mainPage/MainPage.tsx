@@ -225,8 +225,8 @@ const MainPage: React.FC = () => {
           )}
         </div>
         <div className='item-sec'>{content}</div>
-        <div className='pagination'>{pagination}</div>
       </div>
+      <div className='pagination'>{pagination}</div>
     </div>
   );
 };
