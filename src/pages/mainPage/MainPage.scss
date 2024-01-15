@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     padding: 0 28px;
+    margin-top: 40px;
 
     .side-part {
       display: none;
@@ -22,11 +23,11 @@
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 24px 16px;
     }
+  }
 
-    .pagination {
-      align-self: center;
-      margin-top: 20px;
-    }
+  .pagination {
+    align-self: center;
+    margin-top: 26px;
   }
 }
 

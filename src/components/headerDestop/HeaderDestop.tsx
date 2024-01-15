@@ -10,13 +10,13 @@ import { Category } from '../../types/type';
 // styling
 import './HeaderDestop.scss';
 
-interface HeaderMobileProps {
+interface HeaderDestopProps {
   setIsShow: (show: boolean) => void;
   setMenuId: (id: string) => void;
   categoryAll: Category;
 }
 
-const HeaderDestop: React.FC<HeaderMobileProps> = (props) => {
+const HeaderDestop: React.FC<HeaderDestopProps> = (props) => {
   return (
     <header className='headerDestop'>
       <div className='logo'>

@@ -26,9 +26,11 @@ const MainPage: React.FC = () => {
   const [page, setPage] = useState(1);
   const [categoryId, setCategoryId] = useState('');
   const [limit, setLimit] = useState('&limit=20');
+  const [itemOrderBy, setItemOrderBy] = useState('all');
+  const [keywords, setKeywords] = useState(''); // searchBar
+  const [searchedItem, setSearchedItem] = useState(''); // searchBar
 
   //pagination and API
-
   const {
     isLoading,
     isError,
@@ -49,9 +51,78 @@ const MainPage: React.FC = () => {
     }
   );
 
-  const content = items?.products?.map?.((item: Product) => (
-    <ItemCard key={item.id} productInfo={item} />
-  ));
+  let content: any;
+
+  switch (itemOrderBy) {
+    case 'all':
+      content = items?.products?.map?.((item: Product) => (
+        <ItemCard key={item.id} productInfo={item} />
+      ));
+      break;
+    case 'newest':
+      {
+        const byOrder = items?.products?.sort((a: Product, b: Product) => {
+          const itemA: any = new Date(a.updatedAt);
+          const itemB: any = new Date(b.updatedAt);
+          return itemB - itemA;
+        });
+        content = byOrder?.map?.((item: Product) => (
+          <ItemCard key={item.id} productInfo={item} />
+        ));
+      }
+      break;
+    case 'oldest':
+      {
+        const byOrder = items?.products?.sort((a: Product, b: Product) => {
+          const itemA: any = new Date(a.updatedAt);
+          const itemB: any = new Date(b.updatedAt);
+          return itemA - itemB;
+        });
+        content = byOrder?.map?.((item: Product) => (
+          <ItemCard key={item.id} productInfo={item} />
+        ));
+      }
+      break;
+    case 'highest':
+      {
+        const byOrder = items?.products?.sort((a: Product, b: Product) => {
+          const itemA: any = new Date(a.price);
+          const itemB: any = new Date(b.price);
+          return itemB - itemA;
+        });
+        content = byOrder?.map?.((item: Product) => (
+          <ItemCard key={item.id} productInfo={item} />
+        ));
+      }
+      break;
+    case 'lowest':
+      {
+        const byOrder = items?.products?.sort((a: Product, b: Product) => {
+          const itemA: any = new Date(a.price);
+          const itemB: any = new Date(b.price);
+          return itemA - itemB;
+        });
+        content = byOrder?.map?.((item: Product) => (
+          <ItemCard key={item.id} productInfo={item} />
+        ));
+      }
+      break;
+    case `${searchedItem}`:
+      {
+        const results = items?.products?.filter((item: Product) =>
+          item?.name
+            .toLowerCase()
+            .includes(searchedItem.trim().toLocaleLowerCase())
+        );
+        content = results?.map?.((item: Product) => (
+          <ItemCard key={item.id} productInfo={item} />
+        ));
+      }
+      break;
+    default: {
+      break;
+    }
+  }
 
   const nextPage = () => setPage((prev) => prev + 1);
   const prevPage = () => setPage((prev) => prev - 1);
@@ -90,6 +161,12 @@ const MainPage: React.FC = () => {
   const categoryIdHandler = (id: string) => {
     setCategoryId(id);
   };
+
+  const searchBarHandler = () => {
+    setCategoryId('');
+    setSearchedItem(keywords);
+    setItemOrderBy(keywords);
+  }; // searchbar
 
   useEffect(() => {
     const getAllProductsAsync = async () => {
@@ -130,7 +207,13 @@ const MainPage: React.FC = () => {
       <div className='title'>
         <h1 className='medium-20 sec-title'>本月新品</h1>
       </div>
-      <ProductFilter />
+      <ProductFilter
+        setLimit={setLimit}
+        setItemOrderBy={setItemOrderBy}
+        setKeywords={setKeywords}
+        keywords={keywords}
+        searchBarHandler={searchBarHandler}
+      />
       <div className='main-content'>
         <div className='side-part'>
           {IsSideMenuShow && (
@@ -142,8 +225,8 @@ const MainPage: React.FC = () => {
           )}
         </div>
         <div className='item-sec'>{content}</div>
-        <div className='pagination'>{pagination}</div>
       </div>
+      <div className='pagination'>{pagination}</div>
     </div>
   );
 };
