@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 // pages
 import HomePage from './pages/homePage/HomePage';
 import MainPage from './pages/mainPage/MainPage';
+import ItemDetailPage from './pages/itemDetailPage/ItemDetailPage';
 // styling
 import './reset.scss';
 import './base.scss';
@@ -15,18 +16,17 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <div className='App'>
-      <React.StrictMode>
-        <React.Fragment>
-          <QueryClientProvider client={queryClient}>
-            <BrowserRouter basename={basename}>
-              <Routes>
-                <Route path='*' element={<HomePage />} />
-                <Route path='/main' element={<MainPage />} />
-              </Routes>
-            </BrowserRouter>
-          </QueryClientProvider>
-        </React.Fragment>
-      </React.StrictMode>
+      <React.Fragment>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter basename={basename}>
+            <Routes>
+              <Route path='*' element={<HomePage />} />
+              <Route path='/main' element={<MainPage />} />
+              <Route path='/product-detail' element={<ItemDetailPage />} />
+            </Routes>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </React.Fragment>
     </div>
   );
 }
