@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 // components
-import HeaderMobile from '../../components/headerMobile/HeaderMobile';
 import HeaderDestop from '../../components/headerDestop/HeaderDestop';
 import ItemCard from '../../components/itemCard/ItemCard';
 import SideMenu from '../../components/sideMenu/SideMenu';
@@ -198,7 +197,6 @@ const MainPage: React.FC = () => {
 
   return (
     <div className='mainPage'>
-      <HeaderMobile />
       <HeaderDestop
         setIsShow={IsSideMenuShowHandler}
         setMenuId={categoryIdHandler}

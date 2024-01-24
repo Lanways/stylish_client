@@ -24,3 +24,28 @@ export type ProductParam = {
   limit: string;
   categoryId: string;
 };
+
+export type Skus = {
+  color: string;
+  createdAt: string;
+  id: number;
+  inventoryQuantity: number;
+  price: number;
+  productId: number;
+  size: string;
+  skuCode: string;
+  updatedAt: string;
+};
+
+export type ItemDetail = {
+  Skus: Skus[];
+  additionalImage: string;
+  categoryId: number;
+  createdAt: string;
+  description: string;
+  id: number;
+  image: string;
+  name: string;
+  price: string;
+  updatedAt: string;
+};
