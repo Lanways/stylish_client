@@ -1,0 +1,34 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 400px;
+  margin: auto auto;
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+  .login-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+
+    button {
+      height: 54px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      background-color: #000;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+  }
+}
