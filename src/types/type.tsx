@@ -25,7 +25,7 @@ export type ProductParam = {
   categoryId: string;
 };
 
-export type Skus = {
+export type SkusType = {
   color: string;
   createdAt: string;
   id: number;
@@ -38,7 +38,7 @@ export type Skus = {
 };
 
 export type ItemDetail = {
-  Skus: Skus[];
+  Skus: SkusType[];
   additionalImage: string;
   categoryId: number;
   createdAt: string;

@@ -4,8 +4,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 // pages
 import HomePage from './pages/homePage/HomePage';
+import LoginPage from './pages/loginPage/LoginPage';
 import MainPage from './pages/mainPage/MainPage';
 import ItemDetailPage from './pages/itemDetailPage/ItemDetailPage';
+//context
+import { AuthProvider } from './contexts/AuthContext';
 // styling
 import './reset.scss';
 import './base.scss';
@@ -19,11 +22,14 @@ function App() {
       <React.Fragment>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter basename={basename}>
-            <Routes>
-              <Route path='*' element={<HomePage />} />
-              <Route path='/main' element={<MainPage />} />
-              <Route path='/product-detail' element={<ItemDetailPage />} />
-            </Routes>
+            <AuthProvider>
+              <Routes>
+                <Route path='*' element={<HomePage />} />
+                <Route path='login' element={<LoginPage />} />
+                <Route path='/main' element={<MainPage />} />
+                <Route path='/product-detail' element={<ItemDetailPage />} />
+              </Routes>
+            </AuthProvider>
           </BrowserRouter>
         </QueryClientProvider>
       </React.Fragment>
