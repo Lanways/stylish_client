@@ -36,7 +36,7 @@ const ItemDetailPage: React.FC = () => {
       }
     };
     getSingleItem();
-  }, []);
+  }, [itemId]);
 
   return (
     <div className='itemDetailPage'>

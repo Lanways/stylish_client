@@ -21,7 +21,7 @@ const ItemDetailCard: React.FC<ItemDetailProps> = (props) => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState('顏色');
   const [size, setSize] = useState('尺寸');
-  const [inventory, setInventory] = useState();
+  // const [inventory, setInventory] = useState();
   //Sets
   const colorSet: Set<string> = new Set<string>(
     props?.itemInfo?.Skus?.map((option) => option.color)

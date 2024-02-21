@@ -31,11 +31,11 @@ const MainPage: React.FC = () => {
 
   //pagination and API
   const {
-    isLoading,
-    isError,
-    error,
+    // isLoading,
+    // isError,
+    // error,
     data: items,
-    isFetching,
+    // isFetching,
     isPreviousData,
   } = useQuery(
     ['/items', page, limit, categoryId],
