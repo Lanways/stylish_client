@@ -1,6 +1,6 @@
 // react
-import { createContext, useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { createContext, useState, useContext } from 'react';
+// import { useLocation } from 'react-router-dom';
 // package
 import { decodeToken } from 'react-jwt';
 // api
@@ -20,7 +20,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [payload, setPayload] = useState(null);
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   // useEffect(() => {
   //   const checkTokenIsValid = async () => {

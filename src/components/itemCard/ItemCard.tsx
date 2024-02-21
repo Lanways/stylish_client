@@ -1,7 +1,7 @@
 //hooks
 import { useNavigate } from 'react-router-dom';
 //redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { idActions } from '../../store/idSwitcher';
 // types
 import { Product } from '../../types/type';
