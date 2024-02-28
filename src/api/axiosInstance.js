@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const baseUrl = 'https://stylish-api.onrender.com/api';
+export const baseUrl = 'https://www.ezstylish.com/api';
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,

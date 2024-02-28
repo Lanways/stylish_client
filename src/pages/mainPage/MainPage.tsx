@@ -19,9 +19,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MainPage: React.FC = () => {
   // states
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  // const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [category, setCategory] = useState<Category>([]);
-  const [IsSideMenuShow, setIsSideMenuShow] = useState(false);
+  // const [IsSideMenuShow, setIsSideMenuShow] = useState(false);
   const [page, setPage] = useState(1);
   const [categoryId, setCategoryId] = useState('');
   const [limit, setLimit] = useState('&limit=20');
@@ -153,9 +153,9 @@ const MainPage: React.FC = () => {
   );
 
   //function handlers
-  const IsSideMenuShowHandler = (show: boolean) => {
-    setIsSideMenuShow(show);
-  };
+  // const IsSideMenuShowHandler = (show: boolean) => {
+  //   setIsSideMenuShow(show);
+  // };
 
   const categoryIdHandler = (id: string) => {
     setCategoryId(id);
@@ -169,14 +169,14 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     const getAllProductsAsync = async () => {
-      const param: ProductParam = {
-        page: 1,
-        limit: '',
-        categoryId: '',
-      };
+      // const param: ProductParam = {
+      //   page: 1,
+      //   limit: '',
+      //   categoryId: '',
+      // };
       try {
-        const allItems = await getProducts(param);
-        setAllProducts(allItems.products);
+        // const allItems = await getProducts(param);
+        // setAllProducts(allItems.products);
       } catch (error) {
         console.log(error);
       }
@@ -198,7 +198,7 @@ const MainPage: React.FC = () => {
   return (
     <div className='mainPage'>
       <HeaderDestop
-        setIsShow={IsSideMenuShowHandler}
+        // setIsShow={IsSideMenuShowHandler}
         setMenuId={categoryIdHandler}
         categoryAll={category}
       />
@@ -213,7 +213,7 @@ const MainPage: React.FC = () => {
         searchBarHandler={searchBarHandler}
       />
       <div className='main-content'>
-        <div className='side-part'>
+        {/* <div className='side-part'>
           {IsSideMenuShow && (
             <SideMenu
               setMenuId={categoryIdHandler}
@@ -221,7 +221,7 @@ const MainPage: React.FC = () => {
               products={allProducts}
             />
           )}
-        </div>
+        </div> */}
         <div className='item-sec'>{content}</div>
       </div>
       <div className='pagination'>{pagination}</div>

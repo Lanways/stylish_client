@@ -1,7 +1,7 @@
 import axios from 'axios';
 import axiosInstance, { baseUrl } from './axiosInstance';
 
-const baseURL = 'https://stylish-api.onrender.com/';
+const baseURL = 'https://www.ezstylish.com/';
 
 export const getSingleProduct = async (id: string) => {
   try {

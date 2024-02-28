@@ -7,6 +7,9 @@ import HomePage from './pages/homePage/HomePage';
 import LoginPage from './pages/loginPage/LoginPage';
 import MainPage from './pages/mainPage/MainPage';
 import ItemDetailPage from './pages/itemDetailPage/ItemDetailPage';
+import CheckoutPage from './pages/checkoutPage/CheckoutPage';
+//import components
+import HeaderDestop from './components/headerDestop/HeaderDestop';
 //context
 import { AuthProvider } from './contexts/AuthContext';
 // styling
@@ -24,10 +27,11 @@ function App() {
           <BrowserRouter basename={basename}>
             <AuthProvider>
               <Routes>
-                <Route path='*' element={<HomePage />} />
+                {/* <Route path='*' element={<HomePage />} /> */}
+                <Route path='*' element={<MainPage />} />
                 <Route path='login' element={<LoginPage />} />
-                <Route path='/main' element={<MainPage />} />
                 <Route path='/product-detail' element={<ItemDetailPage />} />
+                <Route path='/checkout' element={<CheckoutPage />} />
               </Routes>
             </AuthProvider>
           </BrowserRouter>
