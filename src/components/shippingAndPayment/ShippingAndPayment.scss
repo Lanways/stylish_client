@@ -1,0 +1,39 @@
+.shipping-payment-method {
+  border: 1px solid var(--border-gray);
+  width: 100%;
+
+  .title {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    height: 50px;
+    background-color: #f6f6f6;
+    padding: 0 26px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-gray);
+  }
+
+  .method-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 26px;
+
+    .variation-option {
+      button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #000;
+        width: 100%;
+        background: none;
+        border: 1px solid var(--border-gray);
+        padding: 10px 20px;
+
+        .dropdown-menu {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,117 @@
+.checkout-page-container {
+  .checkout-main {
+    padding: 40px 90px;
+
+    .item-in-cart {
+      width: 100%;
+      border: 1px solid var(--border-gray);
+
+      .cart-title {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        height: 50px;
+        background-color: #f6f6f6;
+        padding: 0 26px;
+        font-weight: 500;
+        border-bottom: 1px solid var(--border-gray);
+      }
+
+      .list-titles {
+        display: flex;
+        width: 100%;
+        padding: 12px 26px;
+        border-bottom: 1px solid var(--border-gray);
+        font-size: 16px;
+
+        .title-sec1 {
+          display: flex;
+          width: 70%;
+
+          div:nth-child(2) {
+            flex-basis: 40%;
+            padding-left: 40px;
+          }
+
+          div {
+            flex-basis: 20%;
+          }
+        }
+
+        .title-sec2 {
+          width: 20%;
+          text-align: center;
+        }
+
+        .title-sec3 {
+          flex: 1;
+          text-align: end;
+        }
+      }
+
+      .cart-list {
+        padding: 26px;
+      }
+    }
+
+    .checkout-lower-sec {
+      margin-top: 30px;
+      display: flex;
+      gap: 30px;
+
+      .order-sum {
+        display: flex;
+        flex-direction: column;
+        width: 460px;
+        border: 1px solid var(--border-gray);
+
+        .sum-title {
+          display: flex;
+          align-items: center;
+          font-size: 18px;
+          font-weight: 500;
+          background-color: #f6f6f6;
+          border-bottom: 1px solid var(--border-gray);
+          padding: 0 26px;
+          height: 50px;
+        }
+
+        .sum-detail {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          padding: 20px 26px;
+
+          .sub-total,
+          .shipping-fee,
+          .sum-total {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          .sub-total {
+            margin-bottom: 12px;
+          }
+
+          .checkout-forward {
+            display: flex;
+            flex-direction: column;
+            margin-top: auto;
+            margin-bottom: 0;
+            border-top: 1px solid var(--border-gray);
+            padding-top: 12px;
+
+            button {
+              color: #fff;
+              background-color: #000;
+              height: 46px;
+              border-radius: 6px;
+              font-weight: 600;
+              margin-top: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

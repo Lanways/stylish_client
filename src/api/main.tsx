@@ -2,7 +2,7 @@ import axios from 'axios';
 //types
 import { ProductParam } from '../types/type';
 
-const baseURL = 'https://stylish-api.onrender.com/';
+const baseURL = 'https://www.ezstylish.com/';
 
 export const getProducts = async ({
   page = 1,

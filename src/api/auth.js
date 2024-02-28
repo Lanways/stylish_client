@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import axiosInstance from './axiosInstance';
 
-const authURL = 'https://stylish-api.onrender.com/api';
+const authURL = 'https://www.ezstylish.com/api';
 
 export const login = async ({ email, password }) => {
   try {
