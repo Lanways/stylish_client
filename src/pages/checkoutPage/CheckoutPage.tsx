@@ -41,6 +41,13 @@ const CheckoutPage: React.FC = () => {
     },
   ]);
 
+  //fee info
+  const [shippingFee, setShippingFee] = useState('0');
+
+  // shipping and payment method dropdown
+  const [shipping, setShipping] = useState('送貨方式');
+  const [payment, setPayment] = useState('付款方式');
+
   useEffect(() => {
     const getCartItemsAsync = async () => {
       try {
@@ -60,9 +67,20 @@ const CheckoutPage: React.FC = () => {
         console.error('[Get Shipping Data failed]: ', error);
       }
     };
+
+    const fee = shippingData
+      ?.filter(
+        (option) =>
+          option.paymentMethod === payment && option.shippingMethod === shipping
+      )
+      ?.map((option) => option.fee);
+
+    console.log(fee);
+
+    fee.length !== 0 && setShippingFee(fee[0]);
     getShippingAsync();
     getCartItemsAsync();
-  }, []);
+  }, [shipping, payment, setShippingData]);
 
   return (
     <div className='checkout-page-container'>
@@ -86,7 +104,13 @@ const CheckoutPage: React.FC = () => {
           </div>
         </div>
         <div className='checkout-lower-sec'>
-          <ShippingAndPayment shippingData={shippingData} />
+          <ShippingAndPayment
+            shippingData={shippingData}
+            shipping={shipping}
+            setShipping={(method) => setShipping(method)}
+            payment={payment}
+            setPayment={(method) => setPayment(method)}
+          />
           <div className='order-sum'>
             <div className='sum-title'>訂單資訊</div>
             <div className='sum-detail'>
@@ -96,7 +120,7 @@ const CheckoutPage: React.FC = () => {
               </div>
               <div className='shipping-fee'>
                 <span>運費</span>
-                <span>NT$70</span>
+                <span>NT${shippingFee}</span>
               </div>
               <div className='checkout-forward'>
                 <div className='sum-total'>

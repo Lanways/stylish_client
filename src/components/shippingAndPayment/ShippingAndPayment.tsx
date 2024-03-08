@@ -10,12 +10,14 @@ import './ShippingAndPayment.scss';
 
 interface ShippingAndPaymentProps {
   shippingData: ShippingType[];
+  shipping: string;
+  payment: string;
+  setShipping: (method: string) => void;
+  setPayment: (method: string) => void;
 }
 
 const ShippingAndPayment: React.FC<ShippingAndPaymentProps> = (props) => {
-  const [loaction, setLocation] = useState('送貨地點');
-  const [shipping, setShipping] = useState('送貨方式');
-  const [payment, setPayment] = useState('付款方式');
+  const [location, setLocation] = useState('送貨地點');
 
   // convert to set
   const shippingSet: Set<string> = new Set<string>(
@@ -36,7 +38,7 @@ const ShippingAndPayment: React.FC<ShippingAndPaymentProps> = (props) => {
       <div className='method-dropdown'>
         <Dropdown className='variation-option'>
           <Dropdown.Toggle variant='success' id='dropdown-basic'>
-            {loaction}
+            {location}
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={() => setLocation('台灣')}>
@@ -46,7 +48,7 @@ const ShippingAndPayment: React.FC<ShippingAndPaymentProps> = (props) => {
         </Dropdown>
         <Dropdown className='variation-option'>
           <Dropdown.Toggle variant='success' id='dropdown-basic'>
-            {shipping}
+            {props.shipping}
           </Dropdown.Toggle>
           <Dropdown.Menu>
             {shippingArray.map((option, i) => {
@@ -54,7 +56,7 @@ const ShippingAndPayment: React.FC<ShippingAndPaymentProps> = (props) => {
                 <Dropdown.Item
                   key={`method-${i}`}
                   href={`#/action-${i}`}
-                  onClick={() => setShipping(option)}
+                  onClick={() => props.setShipping(option)}
                 >
                   {option}
                 </Dropdown.Item>
@@ -64,7 +66,7 @@ const ShippingAndPayment: React.FC<ShippingAndPaymentProps> = (props) => {
         </Dropdown>
         <Dropdown className='variation-option'>
           <Dropdown.Toggle variant='success' id='dropdown-basic'>
-            {payment}
+            {props.payment}
           </Dropdown.Toggle>
           <Dropdown.Menu>
             {paymentArray.map((option, i) => {
@@ -72,7 +74,7 @@ const ShippingAndPayment: React.FC<ShippingAndPaymentProps> = (props) => {
                 <Dropdown.Item
                   key={`payment-${i}`}
                   href={`#/action-${i}`}
-                  onClick={() => setPayment(option)}
+                  onClick={() => props.setPayment(option)}
                 >
                   {option}
                 </Dropdown.Item>
