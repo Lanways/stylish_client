@@ -1,10 +1,69 @@
+//react
+import { useState, useEffect } from 'react';
 //components
 import CartItem from '../../components/cartItem/CartItem';
 import ShippingAndPayment from '../../components/shippingAndPayment/ShippingAndPayment';
+//api
+import { getCart } from '../../api/cart';
+import { getShipping } from '../../api/checkout';
+//type
+import { CartItemType } from '../../types/type';
+import { ShippingType } from '../../types/type';
 //img
 import './CheckoutPage.scss';
 
 const CheckoutPage: React.FC = () => {
+  const [cartItems, setCartItems] = useState<CartItemType[]>([
+    {
+      Sku: {
+        Product: {
+          image: '',
+          name: '',
+        },
+        color: '',
+        inventoryQuantity: 1,
+        price: 1,
+        size: '',
+      },
+      id: 1,
+      quantity: 1,
+      skuId: 1,
+    },
+  ]);
+
+  const [shippingData, setShippingData] = useState<ShippingType[]>([
+    {
+      country: '',
+      fee: '',
+      id: 0,
+      paymentMethod: '',
+      shippingMethod: '',
+    },
+  ]);
+
+  useEffect(() => {
+    const getCartItemsAsync = async () => {
+      try {
+        const items = await getCart();
+        console.log(items);
+        setCartItems(items);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getShippingAsync = async () => {
+      try {
+        const shipping = await getShipping();
+        setShippingData(shipping);
+      } catch (error) {
+        console.error('[Get Shipping Data failed]: ', error);
+      }
+    };
+    getShippingAsync();
+    getCartItemsAsync();
+  }, []);
+
   return (
     <div className='checkout-page-container'>
       <div className='checkout-main'>
@@ -21,11 +80,13 @@ const CheckoutPage: React.FC = () => {
             <div className='title-sec3'>小計</div>
           </div>
           <div className='cart-list'>
-            <CartItem />
+            {cartItems.map((item) => (
+              <CartItem key={item.skuId} item={item} />
+            ))}
           </div>
         </div>
         <div className='checkout-lower-sec'>
-          <ShippingAndPayment />
+          <ShippingAndPayment shippingData={shippingData} />
           <div className='order-sum'>
             <div className='sum-title'>訂單資訊</div>
             <div className='sum-detail'>

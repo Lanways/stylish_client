@@ -50,7 +50,10 @@
       }
 
       .cart-list {
+        display: flex;
+        flex-direction: column;
         padding: 26px;
+        gap: 20px;
       }
     }
 

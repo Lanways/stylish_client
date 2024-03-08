@@ -24,7 +24,10 @@
     }
 
     .cart-list {
+      display: flex;
+      flex-direction: column;
       padding: 20px;
+      gap: 20px;
 
       .item-content {
         display: flex;
@@ -32,7 +35,6 @@
         img {
           width: 120px;
           height: auto;
-          border-radius: 6px;
         }
 
         div {

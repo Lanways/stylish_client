@@ -1,11 +1,9 @@
 import axios from 'axios';
 import axiosInstance, { baseUrl } from './axiosInstance';
 
-const baseURL = 'https://www.ezstylish.com/';
-
 export const getSingleProduct = async (id: string) => {
   try {
-    const { data } = await axios.get(`${baseURL}api/product/${id}`);
+    const { data } = await axios.get(`${baseUrl}/product/${id}`);
     return data.data;
   } catch (error) {
     console.error('[Get Product Data failed]: ', error);

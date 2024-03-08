@@ -3,15 +3,12 @@ import { useEffect, useState } from 'react';
 import ItemDetailCard from '../../components/itemDetailCard/ItemDetailCard';
 //api
 import { getSingleProduct } from '../../api/product';
-//redux
-import { useSelector } from 'react-redux';
 //type
 import { ItemDetail } from '../../types/type';
 //styling
 import './ItemDetailPage.scss';
 
 const ItemDetailPage: React.FC = () => {
-  const itemId = useSelector((state: { id: { id: string } }) => state.id.id);
   const [itemInfo, setItemInfo] = useState<ItemDetail>({
     Skus: [],
     additionalImage: '',
@@ -28,15 +25,19 @@ const ItemDetailPage: React.FC = () => {
   useEffect(() => {
     const getSingleItem = async () => {
       try {
-        const singleItem: ItemDetail = await getSingleProduct(itemId);
-        console.log(singleItem);
-        setItemInfo(singleItem);
+        const ItemKey = localStorage.getItem('itemKey');
+        if (ItemKey) {
+          const singleItem: ItemDetail = await getSingleProduct(ItemKey);
+          console.log(ItemKey);
+          console.log(singleItem);
+          setItemInfo(singleItem);
+        }
       } catch (error) {
         console.log(error);
       }
     };
     getSingleItem();
-  }, [itemId]);
+  }, []);
 
   return (
     <div className='itemDetailPage'>

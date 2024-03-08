@@ -1,13 +1,11 @@
 import axios from 'axios';
-// import axiosInstance from './axiosInstance';
-
-const authURL = 'https://www.ezstylish.com/api';
+import { baseUrl } from './axiosInstance';
 
 export const login = async ({ email, password }) => {
   try {
     const {
       data: { data },
-    } = await axios.post(`${authURL}/user/signin`, {
+    } = await axios.post(`${baseUrl}/user/signin`, {
       email,
       password,
     });

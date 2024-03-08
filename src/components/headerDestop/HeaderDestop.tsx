@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 //fontaswesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCartShopping,
-  faMessage,
+  // faCartShopping,
+  // faMessage,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 //types
@@ -48,8 +48,7 @@ const HeaderDestop: React.FC<HeaderDestopProps> = (props) => {
           icon={faUser}
           onClick={() => navigate('/login')}
         />
-        <FontAwesomeIcon className='fa-icon' icon={faMessage} />
-        <FontAwesomeIcon className='fa-icon' icon={faCartShopping} />
+        {/* <FontAwesomeIcon className='fa-icon' icon={faCartShopping} /> */}
       </div>
     </header>
   );

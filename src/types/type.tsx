@@ -49,3 +49,27 @@ export type ItemDetail = {
   price: string;
   updatedAt: string;
 };
+
+export type CartItemType = {
+  Sku: {
+    Product: {
+      image: string;
+      name: string;
+    };
+    color: string;
+    inventoryQuantity: number;
+    price: number;
+    size: string;
+  };
+  id: number;
+  quantity: number;
+  skuId: number;
+};
+
+export type ShippingType = {
+  country: string;
+  fee: string;
+  id: number;
+  paymentMethod: string;
+  shippingMethod: string;
+};

@@ -3,15 +3,15 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 // pages
-import HomePage from './pages/homePage/HomePage';
+//import HomePage from './pages/homePage/HomePage';
 import LoginPage from './pages/loginPage/LoginPage';
 import MainPage from './pages/mainPage/MainPage';
 import ItemDetailPage from './pages/itemDetailPage/ItemDetailPage';
 import CheckoutPage from './pages/checkoutPage/CheckoutPage';
-//import components
-import HeaderDestop from './components/headerDestop/HeaderDestop';
 //context
 import { AuthProvider } from './contexts/AuthContext';
+import { IdProvider } from './contexts/IdContext';
+import { PriceProvider } from './contexts/PriceContext';
 // styling
 import './reset.scss';
 import './base.scss';
@@ -26,13 +26,20 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <BrowserRouter basename={basename}>
             <AuthProvider>
-              <Routes>
-                {/* <Route path='*' element={<HomePage />} /> */}
-                <Route path='*' element={<MainPage />} />
-                <Route path='login' element={<LoginPage />} />
-                <Route path='/product-detail' element={<ItemDetailPage />} />
-                <Route path='/checkout' element={<CheckoutPage />} />
-              </Routes>
+              <IdProvider>
+                <PriceProvider>
+                  <Routes>
+                    {/* <Route path='*' element={<HomePage />} /> */}
+                    <Route path='*' element={<MainPage />} />
+                    <Route path='login' element={<LoginPage />} />
+                    <Route
+                      path='/product-detail'
+                      element={<ItemDetailPage />}
+                    />
+                    <Route path='/checkout' element={<CheckoutPage />} />
+                  </Routes>
+                </PriceProvider>
+              </IdProvider>
             </AuthProvider>
           </BrowserRouter>
         </QueryClientProvider>

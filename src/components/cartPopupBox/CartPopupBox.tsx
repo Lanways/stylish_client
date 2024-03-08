@@ -1,34 +1,34 @@
 //react
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 //api
 import { getCart } from '../../api/cart';
+//type
+import { CartItemType } from '../../types/type';
 //style
 import './CartPopupBox.scss';
-//img
-import itemPic from '../../assets/item-sample.png';
 
 interface CartPopupBoxProps {
   setShow: (show: boolean) => void;
 }
 
 const CartPopupBox: React.FC<CartPopupBoxProps> = (props) => {
-  const [cartItems, setCartItems] = useState<
+  const navigate = useNavigate();
+  const [cartItems, setCartItems] = useState<CartItemType[]>([
     {
-      cartId: number;
-      createdAt: string;
-      id: number;
-      quantity: number;
-      skuId: number;
-      updatedAt: string;
-    }[]
-  >([
-    {
-      cartId: 0,
-      createdAt: 'string',
-      id: 0,
-      quantity: 0,
-      skuId: 0,
-      updatedAt: 'string',
+      Sku: {
+        Product: {
+          image: '',
+          name: '',
+        },
+        color: '',
+        inventoryQuantity: 1,
+        price: 1,
+        size: '',
+      },
+      id: 1,
+      quantity: 1,
+      skuId: 1,
     },
   ]);
 
@@ -38,6 +38,16 @@ const CartPopupBox: React.FC<CartPopupBoxProps> = (props) => {
       props.setShow(false);
     }
   };
+
+  // const handlePassSubTotal = () => {
+  //   const subTotal = cartItems
+  //     .map((item) => item?.Sku?.price * item?.quantity)
+  //     .reduce((acc, cur) => {
+  //       return acc + cur;
+  //     }, 0);
+
+  //   localStorage.setItem('subTotal', String(subTotal));
+  // };
 
   useEffect(() => {
     const getCartItems = async () => {
@@ -58,22 +68,29 @@ const CartPopupBox: React.FC<CartPopupBoxProps> = (props) => {
       <div className='popup-content'>
         <div className='popup-title'>購物車</div>
         <div className='cart-list'>
-          {cartItems.map((item) => {
+          {cartItems?.map((item) => {
             return (
-              <div className='item-content'>
-                <img src={itemPic} alt='' />
+              <div key={item?.id} className='item-content'>
+                <img src={item?.Sku?.Product?.image} alt='item-img' />
                 <div>
-                  <span>商品名稱</span>
-                  <span>S</span>
+                  <span>{item?.Sku?.Product?.name}</span>
+                  <span>{item?.Sku?.size}</span>
                   <span>x{item?.quantity}</span>
-                  <span>NT$1600</span>
+                  <span>NT${item?.Sku?.price * item?.quantity}</span>
                 </div>
               </div>
             );
           })}
         </div>
         <div className='checkout-btn'>
-          <button>訂單結帳</button>
+          <button
+            onClick={() => {
+              //handlePassSubTotal();
+              navigate('/checkout');
+            }}
+          >
+            訂單結帳
+          </button>
         </div>
       </div>
     </div>

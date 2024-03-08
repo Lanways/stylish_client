@@ -1,20 +1,25 @@
 //react
 import { useState } from 'react';
-//img
-import itemPic from '../../assets/item-sample.png';
+//type
+import { CartItemType } from '../../types/type';
 //style
 import './CartItem.scss';
 
-const CartItem: React.FC = () => {
-  const [quantity, setQuantity] = useState(1);
+interface CartItemProps {
+  item: CartItemType;
+}
+
+const CartItem: React.FC<CartItemProps> = (props) => {
+  const [quantity, setQuantity] = useState(props?.item?.quantity);
+  console.log(props);
 
   return (
     <div className='cart-item-container'>
       <div className='cart-item'>
-        <img src={itemPic} alt='' />
-        <div className='item-name'>保暖舒服大翻領毛衣</div>
-        <div>S</div>
-        <div>NT$1,600</div>
+        <img src={props?.item?.Sku?.Product?.image} alt='' />
+        <div className='item-name'>{props?.item?.Sku?.Product?.name}</div>
+        <div>{props?.item?.Sku?.size}</div>
+        <div>NT${props?.item?.Sku?.price}</div>
       </div>
       <div className='quantity-action'>
         <button
@@ -36,7 +41,7 @@ const CartItem: React.FC = () => {
           +
         </button>
       </div>
-      <div className='sub-total'>NT1,690</div>
+      <div className='sub-total'>NT${props?.item?.Sku?.price * quantity}</div>
     </div>
   );
 };
