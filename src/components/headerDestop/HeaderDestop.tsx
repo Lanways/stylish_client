@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 //fontaswesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCartShopping,
-  faMessage,
+  // faCartShopping,
+  // faMessage,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 //types

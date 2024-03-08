@@ -1,5 +1,5 @@
 //hooks
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 //bootstrap
 import { Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
