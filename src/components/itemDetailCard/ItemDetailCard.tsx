@@ -1,5 +1,5 @@
 //hooks
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 //bootstrap
 import { Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,8 +21,10 @@ const ItemDetailCard: React.FC<ItemDetailProps> = (props) => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState('顏色');
   const [size, setSize] = useState('尺寸');
+
   // const [inventory, setInventory] = useState();
   //Sets
+
   const colorSet: Set<string> = new Set<string>(
     props?.itemInfo?.Skus?.map((option) => option.color)
   );
@@ -67,7 +69,7 @@ const ItemDetailCard: React.FC<ItemDetailProps> = (props) => {
             color-variation'
             >
               <Dropdown.Toggle variant='success' id='dropdown-basic'>
-                {color.toUpperCase()}
+                {color?.toUpperCase()}
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 {colorArray.map((color, i) => {

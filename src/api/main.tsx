@@ -1,8 +1,7 @@
 import axios from 'axios';
+import { baseUrl } from './axiosInstance';
 //types
 import { ProductParam } from '../types/type';
-
-const baseURL = 'https://www.ezstylish.com/';
 
 export const getProducts = async ({
   page = 1,
@@ -11,7 +10,7 @@ export const getProducts = async ({
 }: ProductParam) => {
   try {
     const { data } = await axios.get(
-      `${baseURL}api/product/?page=${page}${limit}${categoryId}`
+      `${baseUrl}/product/?page=${page}${limit}${categoryId}`
     );
     console.log(data.data);
     return data.data;
@@ -22,7 +21,7 @@ export const getProducts = async ({
 
 export const getCategory = async () => {
   try {
-    const { data } = await axios.get(`${baseURL}api/category`);
+    const { data } = await axios.get(`${baseUrl}/category`);
     return data.data;
   } catch (error) {
     console.error('[Get Products Data failed]: ', error);

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import axiosInstance, { baseUrl } from './axiosInstance';
 
 export const getCart = async () => {

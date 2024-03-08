@@ -48,8 +48,7 @@ const HeaderDestop: React.FC<HeaderDestopProps> = (props) => {
           icon={faUser}
           onClick={() => navigate('/login')}
         />
-        <FontAwesomeIcon className='fa-icon' icon={faMessage} />
-        <FontAwesomeIcon className='fa-icon' icon={faCartShopping} />
+        {/* <FontAwesomeIcon className='fa-icon' icon={faCartShopping} /> */}
       </div>
     </header>
   );

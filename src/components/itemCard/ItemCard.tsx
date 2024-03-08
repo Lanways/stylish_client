@@ -1,8 +1,7 @@
 //hooks
 import { useNavigate } from 'react-router-dom';
-//redux
-import { useDispatch } from 'react-redux';
-import { idActions } from '../../store/idSwitcher';
+//context
+import { useId } from '../../contexts/IdContext';
 // types
 import { Product } from '../../types/type';
 //styling
@@ -13,17 +12,14 @@ interface ProductProps {
 }
 
 const ItemCard: React.FC<ProductProps> = (props) => {
-  const dispatch = useDispatch();
+  const { checkItemId } = useId();
   const navigate = useNavigate();
 
-  const IdPasserHandler = () => {
-    dispatch(idActions.idChanger(String(props?.productInfo?.id)));
-  };
   return (
     <div
       className='itemCard'
       onClick={() => {
-        IdPasserHandler();
+        checkItemId(String(props?.productInfo?.id));
         navigate('/product-detail');
       }}
     >

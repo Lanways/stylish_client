@@ -4,13 +4,13 @@ import { useQuery } from 'react-query';
 // components
 import HeaderDestop from '../../components/headerDestop/HeaderDestop';
 import ItemCard from '../../components/itemCard/ItemCard';
-import SideMenu from '../../components/sideMenu/SideMenu';
+//import SideMenu from '../../components/sideMenu/SideMenu';
 import ProductFilter from '../../components/productFilter/ProductFilter';
 // api
 import { getProducts } from '../../api/main';
 import { getCategory } from '../../api/main';
 // types
-import { Product, Category, ProductParam } from '../../types/type';
+import { Product, Category } from '../../types/type'; //ProductParam 如要要做sideMenu要在import進來
 // styling
 import './MainPage.scss';
 //import bootstrap
