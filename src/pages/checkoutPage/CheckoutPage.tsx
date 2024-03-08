@@ -80,7 +80,7 @@ const CheckoutPage: React.FC = () => {
     fee.length !== 0 && setShippingFee(fee[0]);
     getShippingAsync();
     getCartItemsAsync();
-  }, [shipping, payment, setShippingData]);
+  }, [shipping, payment, shippingData]);
 
   return (
     <div className='checkout-page-container'>
