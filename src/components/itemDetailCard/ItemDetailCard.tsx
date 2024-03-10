@@ -61,7 +61,7 @@ const ItemDetailCard: React.FC<ItemDetailProps> = (props) => {
       <div className='single-item-pic'>
         <img src={props?.itemInfo?.image} alt='logo' />
       </div>
-      <div>
+      <div className='single-item-detail'>
         <h1 className='bold-24'>{props?.itemInfo?.name}</h1>
         <div className='item-tag'>
           <span className='regular-14 tag'>預購商品</span>
