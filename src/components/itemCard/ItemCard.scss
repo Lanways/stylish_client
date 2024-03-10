@@ -13,10 +13,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    //gap: 4px;
 
     .item-title {
-      margin-top: 10px;
+      margin: 10px 0 4px 0;
     }
 
     .price {

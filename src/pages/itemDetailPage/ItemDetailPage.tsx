@@ -1,14 +1,26 @@
 import { useEffect, useState } from 'react';
 //componants
 import ItemDetailCard from '../../components/itemDetailCard/ItemDetailCard';
+import HeaderDestop from '../../components/headerDestop/HeaderDestop';
 //api
 import { getSingleProduct } from '../../api/product';
 //type
+import { Category } from '../../types/type';
 import { ItemDetail } from '../../types/type';
 //styling
 import './ItemDetailPage.scss';
 
 const ItemDetailPage: React.FC = () => {
+  //header - start
+  const [categoryId, setCategoryId] = useState('');
+  const [category, setCategory] = useState<Category>([]);
+
+  const categoryIdHandler = (id: string) => {
+    setCategoryId(id);
+  };
+
+  //header - end
+
   const [itemInfo, setItemInfo] = useState<ItemDetail>({
     Skus: [],
     additionalImage: '',
@@ -41,6 +53,7 @@ const ItemDetailPage: React.FC = () => {
 
   return (
     <div className='itemDetailPage'>
+      <HeaderDestop setMenuId={categoryIdHandler} categoryAll={category} />
       <ItemDetailCard itemInfo={itemInfo} />
     </div>
   );

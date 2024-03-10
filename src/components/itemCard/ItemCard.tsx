@@ -30,7 +30,7 @@ const ItemCard: React.FC<ProductProps> = (props) => {
         <h3 className='medium-14 item-title'>{props?.productInfo?.name}</h3>
         <div className='price'>
           <span className='bold-16'>{`NT$${props?.productInfo?.price}`}</span>
-          <span className='regular-13 regular-price'>NT$1,680</span>
+          {/* <span className='regular-13 regular-price'>NT$1,680</span> */}
         </div>
       </div>
     </div>

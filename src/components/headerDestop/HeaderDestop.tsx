@@ -7,6 +7,7 @@ import {
   // faMessage,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../../contexts/AuthContext';
 //types
 import { Category } from '../../types/type';
 // styling
@@ -21,9 +22,16 @@ interface HeaderDestopProps {
 const HeaderDestop: React.FC<HeaderDestopProps> = (props) => {
   const navigate = useNavigate();
 
+  const { isAuthenticated, logout }: { isAuthenticated: boolean; logout: any } =
+    useAuth();
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <header className='headerDestop'>
-      <div className='logo'>
+      <div className='logo' onClick={() => navigate('/main')}>
         <h1>S.tylish</h1>
       </div>
       <ul className='menu-sec medium-14'>
@@ -42,12 +50,34 @@ const HeaderDestop: React.FC<HeaderDestopProps> = (props) => {
           );
         })}
       </ul>
-      <div className='icons-sec'>
-        <FontAwesomeIcon
-          className='fa-icon'
-          icon={faUser}
-          onClick={() => navigate('/login')}
-        />
+      <div className='auth-sec'>
+        {/* <FontAwesomeIcon
+            className='fa-icon'
+            icon={faUser}
+            onClick={() => navigate('/login')}
+          /> */}
+
+        {isAuthenticated ? (
+          <div className='logout-group'>
+            {/* <FontAwesomeIcon
+              className='fa-icon'
+              icon={faUser}
+              onClick={() => navigate('/login')}
+            /> */}
+            <div className='auth-btn logout'>
+              <span className='medium-14 login' onClick={handleLogout}>
+                登出
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div className='auth-btn login'>
+            <span className='medium-14' onClick={() => navigate('/login')}>
+              登入
+            </span>
+          </div>
+        )}
+
         {/* <FontAwesomeIcon className='fa-icon' icon={faCartShopping} /> */}
       </div>
     </header>

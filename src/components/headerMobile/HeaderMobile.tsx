@@ -10,8 +10,6 @@ import {
   faUser,
   faBars,
 } from '@fortawesome/free-solid-svg-icons';
-// img
-import Logo from '../../assets/logo.png';
 // styling
 import './HeaderMobile.scss';
 
