@@ -7,6 +7,7 @@ import './CartItem.scss';
 
 interface CartItemProps {
   item: CartItemType;
+  setSubTotal: (prev: any) => void;
 }
 
 const CartItem: React.FC<CartItemProps> = (props) => {
@@ -24,7 +25,12 @@ const CartItem: React.FC<CartItemProps> = (props) => {
       <div className='quantity-action'>
         <button
           className='minus'
-          onClick={() => quantity > 1 && setQuantity((prev) => prev - 1)}
+          onClick={() => {
+            if (quantity > 0) {
+              setQuantity((prev) => prev - 1);
+              props.setSubTotal((prev: any) => prev - props?.item?.Sku?.price);
+            }
+          }}
         >
           -
         </button>
@@ -36,7 +42,10 @@ const CartItem: React.FC<CartItemProps> = (props) => {
         />
         <button
           className='plus'
-          onClick={() => setQuantity((prev) => prev + 1)}
+          onClick={() => {
+            setQuantity((prev) => prev + 1);
+            props.setSubTotal((prev: any) => prev + props?.item?.Sku?.price);
+          }}
         >
           +
         </button>

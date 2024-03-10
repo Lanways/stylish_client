@@ -43,13 +43,25 @@
     }
   }
 
-  .icons-sec {
+  .auth-sec {
     margin-left: auto;
-    display: flex;
-    gap: 18px;
+    //display: flex;
+    //gap: 18px;
     .fa-icon {
       font-size: 18px;
       color: var(--text-gray);
+      cursor: pointer;
+    }
+
+    .logout-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .auth-btn {
+      border: 1px solid var(--border-gray);
+      padding: 8px 16px;
+      border-radius: 6px;
       cursor: pointer;
     }
   }

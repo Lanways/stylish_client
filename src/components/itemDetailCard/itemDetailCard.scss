@@ -1,11 +1,17 @@
 .itemDetailCard {
   display: flex;
-  gap: 60px;
+  gap: 30px;
+  padding: 40px 90px;
 
   .single-item-pic {
     img {
+      width: 800px;
       height: auto;
     }
+  }
+
+  .single-item-detail {
+    flex: 1;
   }
 
   .item-prices {
@@ -32,7 +38,7 @@
     .variation {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 22px;
       .variation-option {
         button {
           color: #000;
@@ -90,7 +96,7 @@
       background-color: #000;
       border-radius: 6px;
       height: 46px;
-      margin-top: 22px;
+      margin-top: 32px;
       font-weight: 600;
     }
   }

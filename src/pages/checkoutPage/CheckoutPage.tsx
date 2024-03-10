@@ -3,16 +3,28 @@ import { useState, useEffect } from 'react';
 //components
 import CartItem from '../../components/cartItem/CartItem';
 import ShippingAndPayment from '../../components/shippingAndPayment/ShippingAndPayment';
+import HeaderDestop from '../../components/headerDestop/HeaderDestop';
 //api
 import { getCart } from '../../api/cart';
 import { getShipping } from '../../api/checkout';
 //type
 import { CartItemType } from '../../types/type';
 import { ShippingType } from '../../types/type';
+import { Category } from '../../types/type';
 //img
 import './CheckoutPage.scss';
 
 const CheckoutPage: React.FC = () => {
+  //header - start
+  const [categoryId, setCategoryId] = useState('');
+  const [category, setCategory] = useState<Category>([]);
+
+  const categoryIdHandler = (id: string) => {
+    setCategoryId(id);
+  };
+
+  //header - end
+
   const [cartItems, setCartItems] = useState<CartItemType[]>([
     {
       Sku: {
@@ -41,6 +53,8 @@ const CheckoutPage: React.FC = () => {
     },
   ]);
 
+  const [subTotal, setSubTotal] = useState(0);
+
   //fee info
   const [shippingFee, setShippingFee] = useState('0');
 
@@ -54,6 +68,11 @@ const CheckoutPage: React.FC = () => {
         const items = await getCart();
         console.log(items);
         setCartItems(items);
+        const total = items?.reduce((acc: number, cur: CartItemType) => {
+          return acc + cur.quantity * cur.Sku.price;
+        }, 0);
+
+        setSubTotal(total);
       } catch (error) {
         console.log(error);
       }
@@ -75,15 +94,15 @@ const CheckoutPage: React.FC = () => {
       )
       ?.map((option) => option.fee);
 
-    console.log(fee);
-
     fee.length !== 0 && setShippingFee(fee[0]);
+
     getShippingAsync();
     getCartItemsAsync();
-  }, [shipping, payment, shippingData]);
+  }, [shipping, payment]);
 
   return (
     <div className='checkout-page-container'>
+      <HeaderDestop setMenuId={categoryIdHandler} categoryAll={category} />
       <div className='checkout-main'>
         <div className='item-in-cart'>
           <div className='cart-title'>購物車</div>
@@ -99,7 +118,11 @@ const CheckoutPage: React.FC = () => {
           </div>
           <div className='cart-list'>
             {cartItems.map((item) => (
-              <CartItem key={item.skuId} item={item} />
+              <CartItem
+                key={item.skuId}
+                item={item}
+                setSubTotal={setSubTotal}
+              />
             ))}
           </div>
         </div>
@@ -116,7 +139,7 @@ const CheckoutPage: React.FC = () => {
             <div className='sum-detail'>
               <div className='sub-total'>
                 <span>小計</span>
-                <span>NT$1,1680</span>
+                <span>NT${subTotal}</span>
               </div>
               <div className='shipping-fee'>
                 <span>運費</span>
@@ -125,7 +148,7 @@ const CheckoutPage: React.FC = () => {
               <div className='checkout-forward'>
                 <div className='sum-total'>
                   <span>合計</span>
-                  <span>NT$1,750</span>
+                  <span>NT{subTotal + Number(shippingFee)}</span>
                 </div>
                 <button>前往結賬</button>
               </div>

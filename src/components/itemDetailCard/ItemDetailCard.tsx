@@ -1,5 +1,5 @@
 //hooks
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 //bootstrap
 import { Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { postCartItem } from '../../api/product';
 //components
 import CartPopupBox from '../cartPopupBox/CartPopupBox';
+//context
+import { useAuth } from '../../contexts/AuthContext';
 //type
 import { ItemDetail } from '../../types/type';
 //styling
@@ -19,8 +21,10 @@ interface ItemDetailProps {
 const ItemDetailCard: React.FC<ItemDetailProps> = (props) => {
   const [isShow, setIsShow] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  const [color, setColor] = useState('顏色');
-  const [size, setSize] = useState('尺寸');
+  const [color, setColor] = useState('');
+  const [size, setSize] = useState('');
+  const { isAuthenticated } = useAuth();
+  const [isLogin, setIsLogin] = useState(true);
 
   // const [inventory, setInventory] = useState();
   //Sets
@@ -47,12 +51,17 @@ const ItemDetailCard: React.FC<ItemDetailProps> = (props) => {
     }
   };
 
+  useEffect(() => {
+    setColor(props?.itemInfo?.Skus[0]?.color);
+    setSize(props?.itemInfo?.Skus[0]?.size);
+  }, [props]);
+
   return (
     <div className='itemDetailCard'>
       <div className='single-item-pic'>
         <img src={props?.itemInfo?.image} alt='logo' />
       </div>
-      <div>
+      <div className='single-item-detail'>
         <h1 className='bold-24'>{props?.itemInfo?.name}</h1>
         <div className='item-tag'>
           <span className='regular-14 tag'>預購商品</span>
@@ -129,12 +138,24 @@ const ItemDetailCard: React.FC<ItemDetailProps> = (props) => {
           <button
             className='order-btn'
             onClick={() => {
-              addItemToCardHandler();
-              setIsShow(true);
+              if (isAuthenticated) {
+                addItemToCardHandler();
+                setIsShow(true);
+                setIsLogin(true);
+              } else {
+                setIsLogin(false);
+              }
             }}
           >
             Preorder
           </button>
+          {!isLogin && (
+            <div
+              style={{ color: 'red', marginTop: '6px', textAlign: 'center' }}
+            >
+              *請先登入
+            </div>
+          )}
           {isShow && (
             <CartPopupBox setShow={(show: boolean) => setIsShow(show)} />
           )}

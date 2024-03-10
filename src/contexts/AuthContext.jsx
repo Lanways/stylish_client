@@ -1,6 +1,6 @@
 // react
-import { createContext, useState, useContext } from 'react';
-//import { useLocation } from 'react-router-dom';
+import { createContext, useState, useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 // package
 import { decodeToken } from 'react-jwt';
 // api
@@ -20,24 +20,25 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [payload, setPayload] = useState(null);
-  //const { pathname } = useLocation();
+  const { pathname } = useLocation();
 
-  // useEffect(() => {
-  //   const checkTokenIsValid = async () => {
-  //     const authToken = JSON.parse(localStorage.getItem('authToken'));
-  //     // console.log(authToken); 觀察資料用
-  //     if (authToken) {
-  //       setIsAuthenticated(true);
-  //       const tempPayload = decodeToken(authToken.accessToken);
-  //       console.log(tempPayload); //觀察資料用;
-  //       setPayload(tempPayload);
-  //     } else {
-  //       setIsAuthenticated(false);
-  //       setPayload(null);
-  //     }
-  //   };
-  //   checkTokenIsValid();
-  // }, [pathname]);
+  useEffect(() => {
+    const checkTokenIsValid = async () => {
+      const authToken = JSON.parse(localStorage.getItem('authToken'));
+      console.log(authToken); //觀察資料用
+
+      if (authToken) {
+        setIsAuthenticated(true);
+        const tempPayload = decodeToken(authToken.accessToken);
+        console.log(tempPayload); //觀察資料用;
+        setPayload(tempPayload);
+      } else {
+        setIsAuthenticated(false);
+        setPayload(null);
+      }
+    };
+    checkTokenIsValid();
+  }, [pathname]);
 
   return (
     <AuthContext.Provider
@@ -60,7 +61,7 @@ export const AuthProvider = ({ children }) => {
           if (tempPayload) {
             setPayload(tempPayload);
             setIsAuthenticated(true);
-            localStorage.setItem('authToken', token);
+            localStorage.setItem('authToken', JSON.stringify(token));
           } else {
             setPayload(null);
             setIsAuthenticated(false);
