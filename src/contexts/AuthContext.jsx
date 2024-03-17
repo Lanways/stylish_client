@@ -13,6 +13,7 @@ const defaultAuthContext = {
   login: null, // 登入方法
   logout: null, // 登入方法
   adminLogin: null,
+  setGoogleAuth: null,
 };
 
 const AuthContext = createContext(defaultAuthContext);
@@ -25,12 +26,12 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkTokenIsValid = async () => {
       const authToken = JSON.parse(localStorage.getItem('authToken'));
-      console.log(authToken); //觀察資料用
+      //console.log(authToken); //觀察資料用
 
       if (authToken) {
         setIsAuthenticated(true);
-        const tempPayload = decodeToken(authToken.accessToken);
-        console.log(tempPayload); //觀察資料用;
+        const tempPayload = decodeToken(authToken);
+        //console.log(tempPayload); //觀察資料用;
         setPayload(tempPayload);
       } else {
         setIsAuthenticated(false);
@@ -44,6 +45,21 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         isAuthenticated,
+        setGoogleAuth: (token) => {
+          const { accessToken, refreshToken } = token;
+          const tempPayload = decodeToken(accessToken);
+          if (tempPayload) {
+            setPayload(tempPayload);
+            setIsAuthenticated(true);
+            localStorage.setItem(
+              'authToken',
+              JSON.stringify({ accessToken, refreshToken })
+            );
+          } else {
+            setPayload(null);
+            setIsAuthenticated(false);
+          }
+        },
         currentMember: payload && {
           id: payload.id,
           name: payload.username,

@@ -8,11 +8,12 @@ import './CartItem.scss';
 interface CartItemProps {
   item: CartItemType;
   setSubTotal: (prev: any) => void;
+  index: number;
+  setOrderItemNum: (prev: any) => void;
 }
 
 const CartItem: React.FC<CartItemProps> = (props) => {
   const [quantity, setQuantity] = useState(props?.item?.quantity);
-  console.log(props);
 
   return (
     <div className='cart-item-container'>
@@ -26,10 +27,15 @@ const CartItem: React.FC<CartItemProps> = (props) => {
         <button
           className='minus'
           onClick={() => {
-            if (quantity > 0) {
+            if (quantity > 1) {
               setQuantity((prev) => prev - 1);
               props.setSubTotal((prev: any) => prev - props?.item?.Sku?.price);
             }
+            props.setOrderItemNum((prev: any) => {
+              const newNumbers = [...prev];
+              newNumbers[props.index] = quantity - 1;
+              return newNumbers;
+            });
           }}
         >
           -
@@ -38,13 +44,20 @@ const CartItem: React.FC<CartItemProps> = (props) => {
           className='regular-14'
           type='text'
           value={quantity}
-          onChange={(e) => setQuantity(Number(e.target.value))}
+          onChange={(e) => {
+            setQuantity(Number(e.target.value));
+          }}
         />
         <button
           className='plus'
           onClick={() => {
             setQuantity((prev) => prev + 1);
             props.setSubTotal((prev: any) => prev + props?.item?.Sku?.price);
+            props.setOrderItemNum((prev: any) => {
+              const newNumbers = [...prev];
+              newNumbers[props.index] = quantity + 1;
+              return newNumbers;
+            });
           }}
         >
           +

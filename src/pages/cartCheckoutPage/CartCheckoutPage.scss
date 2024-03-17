@@ -1,4 +1,4 @@
-.checkout-page-container {
+.cart-checkout-page-container {
   .checkout-main {
     padding: 40px 90px;
 
@@ -115,6 +115,11 @@
           }
         }
       }
+    }
+
+    .forward-error {
+      margin-top: 8px;
+      color: red;
     }
   }
 }

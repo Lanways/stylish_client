@@ -1,0 +1,59 @@
+.Info-checkout-page-container {
+  .Info-checkout-main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 40px 90px;
+
+    .title {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 500;
+      height: 50px;
+      background-color: #f6f6f6;
+      padding: 0 26px;
+      border-bottom: 1px solid var(--border-gray);
+
+      .shipping-fee {
+        font-size: 14px;
+        margin-left: auto;
+        margin-right: 0;
+      }
+    }
+
+    .shipping-detail {
+      border: 1px solid var(--border-gray);
+
+      .recipient-info {
+        padding: 20px 26px 26px 26px;
+
+        .shipping-method {
+          margin-bottom: 12px;
+        }
+
+        .input-group {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+      }
+    }
+
+    .payment-detail {
+      border: 1px solid var(--border-gray);
+      height: fit-content;
+
+      .payment-sumup {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 26px 26px 26px;
+
+        .payment-total {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

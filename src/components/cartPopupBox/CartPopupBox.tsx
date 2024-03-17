@@ -86,7 +86,7 @@ const CartPopupBox: React.FC<CartPopupBoxProps> = (props) => {
           <button
             onClick={() => {
               //handlePassSubTotal();
-              navigate('/checkout');
+              navigate('/cart-checkout');
             }}
           >
             訂單結帳
