@@ -7,7 +7,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import LoginPage from './pages/loginPage/LoginPage';
 import MainPage from './pages/mainPage/MainPage';
 import ItemDetailPage from './pages/itemDetailPage/ItemDetailPage';
-import CheckoutPage from './pages/checkoutPage/CheckoutPage';
+import CartCheckoutPage from './pages/cartCheckoutPage/CartCheckoutPage';
+import InfoCheckoutPage from './pages/infoCheckoutPage/InfoCheckoutPage';
 //context
 import { AuthProvider } from './contexts/AuthContext';
 import { IdProvider } from './contexts/IdContext';
@@ -36,7 +37,14 @@ function App() {
                       path='/product-detail'
                       element={<ItemDetailPage />}
                     />
-                    <Route path='/checkout' element={<CheckoutPage />} />
+                    <Route
+                      path='/cart-checkout'
+                      element={<CartCheckoutPage />}
+                    />
+                    <Route
+                      path='/info-checkout'
+                      element={<InfoCheckoutPage />}
+                    />
                   </Routes>
                 </PriceProvider>
               </IdProvider>

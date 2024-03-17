@@ -7,6 +7,10 @@ import Swal from 'sweetalert2';
 import Input from '../../components/input/Input';
 //context
 import { useAuth } from '../../contexts/AuthContext';
+//api
+import { googleLogin } from '../../api/auth';
+// img
+import googleLogo from '../../assets/google-icon.svg';
 //style
 import './LoginPage.scss';
 
@@ -50,6 +54,14 @@ const LoginPage: React.FC = () => {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      await googleLogin();
+    } catch (error) {
+      console.error('[Login Failed]:', error);
+    }
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
       navigate('/main');
@@ -83,6 +95,10 @@ const LoginPage: React.FC = () => {
           }
         />
         <button onClick={handleLogin}>Login</button>
+        <button className='googleBtn' onClick={handleGoogleLogin}>
+          <img src={googleLogo} alt='google-logo' />
+          <span className='bold-18'>Google登入</span>
+        </button>
       </div>
     </div>
   );

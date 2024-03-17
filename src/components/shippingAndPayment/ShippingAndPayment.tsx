@@ -12,12 +12,14 @@ interface ShippingAndPaymentProps {
   shippingData: ShippingType[];
   shipping: string;
   payment: string;
+  location: string;
   setShipping: (method: string) => void;
   setPayment: (method: string) => void;
+  setLocation: (method: string) => void;
 }
 
 const ShippingAndPayment: React.FC<ShippingAndPaymentProps> = (props) => {
-  const [location, setLocation] = useState('送貨地點');
+  //const [location, setLocation] = useState('送貨地點');
 
   // convert to set
   const shippingSet: Set<string> = new Set<string>(
@@ -38,10 +40,10 @@ const ShippingAndPayment: React.FC<ShippingAndPaymentProps> = (props) => {
       <div className='method-dropdown'>
         <Dropdown className='variation-option'>
           <Dropdown.Toggle variant='success' id='dropdown-basic'>
-            {location}
+            {props.location}
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => setLocation('台灣')}>
+            <Dropdown.Item onClick={() => props.setLocation('台灣')}>
               台灣
             </Dropdown.Item>
           </Dropdown.Menu>

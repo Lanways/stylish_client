@@ -9,6 +9,9 @@ import ProductFilter from '../../components/productFilter/ProductFilter';
 // api
 import { getProducts } from '../../api/main';
 import { getCategory } from '../../api/main';
+import { getUserToken } from '../../api/auth';
+// context
+import { useAuth } from '../../contexts/AuthContext';
 // types
 import { Product, Category } from '../../types/type'; //ProductParam 如要要做sideMenu要在import進來
 // styling
@@ -194,6 +197,35 @@ const MainPage: React.FC = () => {
     getCategoryAsync();
     console.log(items);
   }, [items]);
+
+  // google login
+
+  const {
+    setGoogleAuth,
+  }: {
+    setGoogleAuth: any;
+  } = useAuth();
+
+  useEffect(() => {
+    // 得到URL的查詢參數
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams.has('isAuthenticated'));
+    // 檢查是否包含 isAuthenticated 參數，並讀取其值
+    if (urlParams.has('isAuthenticated')) {
+      const isAuthenticated = urlParams.get('isAuthenticated') === 'true';
+      if (isAuthenticated) {
+        // 用戶已認證
+        console.log('用戶已認證');
+        const fectUserToken = async () => {
+          const token = await getUserToken();
+          if (token) setGoogleAuth(token);
+        };
+        fectUserToken();
+      } else {
+        return;
+      }
+    }
+  }, [setGoogleAuth]);
 
   return (
     <div className='mainPage'>

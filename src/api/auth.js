@@ -22,3 +22,21 @@ export const login = async ({ email, password }) => {
     return { success: false, error };
   }
 };
+
+export const googleLogin = async () => {
+  try {
+    window.location.href = `${baseUrl}/auth/google`;
+  } catch (error) {
+    console.error('[Login Failed]:', error);
+    return { success: false, error };
+  }
+};
+
+export const getUserToken = async () => {
+  try {
+    const res = await axios.get(`${baseUrl}/auth/google/callback`);
+    return res.data;
+  } catch (error) {
+    console.error('[Get User Token Failed]:', error);
+  }
+};
