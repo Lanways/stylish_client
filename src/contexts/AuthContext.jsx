@@ -46,15 +46,13 @@ export const AuthProvider = ({ children }) => {
       value={{
         isAuthenticated,
         setGoogleAuth: (token) => {
-          const { accessToken, refreshToken } = token;
-          const tempPayload = decodeToken(accessToken);
+          console.log(token);
+          //const { accessToken, refreshToken } = token;
+          const tempPayload = decodeToken(token);
           if (tempPayload) {
             setPayload(tempPayload);
             setIsAuthenticated(true);
-            localStorage.setItem(
-              'authToken',
-              JSON.stringify({ accessToken, refreshToken })
-            );
+            localStorage.setItem('authToken', JSON.stringify(token));
           } else {
             setPayload(null);
             setIsAuthenticated(false);
