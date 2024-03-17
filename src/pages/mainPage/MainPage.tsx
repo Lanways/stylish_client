@@ -226,7 +226,7 @@ const MainPage: React.FC = () => {
         return;
       }
     }
-  }, [setGoogleAuth]);
+  }, []);
 
   return (
     <div className='mainPage'>

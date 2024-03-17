@@ -64,17 +64,13 @@ const HeaderDestop: React.FC<HeaderDestopProps> = (props) => {
               icon={faUser}
               onClick={() => navigate('/login')}
             /> */}
-            <div className='auth-btn logout'>
-              <span className='medium-14 login' onClick={handleLogout}>
-                登出
-              </span>
+            <div className='auth-btn logout' onClick={handleLogout}>
+              <span className='medium-14 login'>登出</span>
             </div>
           </div>
         ) : (
-          <div className='auth-btn login'>
-            <span className='medium-14' onClick={() => navigate('/login')}>
-              登入
-            </span>
+          <div className='auth-btn login' onClick={() => navigate('/login')}>
+            <span className='medium-14'>登入</span>
           </div>
         )}
 
