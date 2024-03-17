@@ -218,6 +218,7 @@ const MainPage: React.FC = () => {
         console.log('用戶已認證');
         const fectUserToken = async () => {
           const token = await getUserToken();
+          console.log(token);
           if (token) setGoogleAuth(token);
         };
         fectUserToken();
