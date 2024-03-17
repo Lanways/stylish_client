@@ -26,12 +26,12 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkTokenIsValid = async () => {
       const authToken = JSON.parse(localStorage.getItem('authToken'));
-      //console.log(authToken); //觀察資料用
+      console.log(authToken); //觀察資料用
 
       if (authToken) {
         setIsAuthenticated(true);
         const tempPayload = decodeToken(authToken);
-        //console.log(tempPayload); //觀察資料用;
+        console.log(tempPayload); //觀察資料用;
         setPayload(tempPayload);
       } else {
         setIsAuthenticated(false);
