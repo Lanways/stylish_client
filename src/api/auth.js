@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { baseUrl } from './axiosInstance';
+import axiosInstance, { baseUrl } from './axiosInstance';
 
 export const login = async ({ email, password }) => {
   try {
@@ -34,7 +34,7 @@ export const googleLogin = async () => {
 
 export const getUserToken = async () => {
   try {
-    const res = await axios.get(`${baseUrl}/user/token`);
+    const res = await axiosInstance.get(`${baseUrl}/user/token`);
     return res.data;
   } catch (error) {
     console.error('[Get User Token Failed]:', error);
