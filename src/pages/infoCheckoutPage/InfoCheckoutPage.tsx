@@ -22,6 +22,7 @@ const InfoCheckoutPage = () => {
   //header - end
 
   const navigate = useNavigate();
+  const [hasError, setHasError] = useState(false);
 
   // data from previous page
   const { state } = useLocation();
@@ -41,22 +42,27 @@ const InfoCheckoutPage = () => {
   //const shippingFeeId = state.shippingId[0]?.id;
 
   const handleCheckout = async () => {
-    const formate = {
-      total: state?.total,
-      recipient: recipient,
-      address: address,
-      number: number,
-      payment: state?.paymentMethod,
-      orderItems: orderItems,
-      shippingFeeId: state?.shippingId[0]?.id,
-    };
+    if (recipient !== '' && number !== '' && address !== '') {
+      setHasError(false);
+      const formate = {
+        total: state?.total,
+        recipient: recipient,
+        address: address,
+        number: number,
+        payment: state?.paymentMethod,
+        orderItems: orderItems,
+        shippingFeeId: state?.shippingId[0]?.id,
+      };
 
-    const res = await postOrder(formate);
-    console.log(res);
-    if (res?.status === 200) {
-      navigate('/order-complete', {
-        state: state?.total,
-      });
+      const res = await postOrder(formate);
+      console.log(res);
+      if (res?.status === 200) {
+        navigate('/order-complete', {
+          state: state?.total,
+        });
+      }
+    } else {
+      setHasError(true);
     }
   };
 
@@ -120,7 +126,10 @@ const InfoCheckoutPage = () => {
         </div>
       </div>
       <div className='checkout-action' onClick={handleCheckout}>
-        <button className='checkout-btn'>送出訂單</button>
+        <div className='forward-order'>
+          <button className='checkout-btn'>送出訂單</button>
+          {hasError && <div className='input-error'>欄位不可空白</div>}
+        </div>
       </div>
     </div>
   );
