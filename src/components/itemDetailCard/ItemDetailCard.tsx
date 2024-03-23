@@ -153,7 +153,7 @@ const ItemDetailCard: React.FC<ItemDetailProps> = (props) => {
             <div
               style={{ color: 'red', marginTop: '6px', textAlign: 'center' }}
             >
-              *請先登入
+              請先登入
             </div>
           )}
           {isShow && (
