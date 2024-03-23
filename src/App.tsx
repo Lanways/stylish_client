@@ -9,6 +9,7 @@ import MainPage from './pages/mainPage/MainPage';
 import ItemDetailPage from './pages/itemDetailPage/ItemDetailPage';
 import CartCheckoutPage from './pages/cartCheckoutPage/CartCheckoutPage';
 import InfoCheckoutPage from './pages/infoCheckoutPage/InfoCheckoutPage';
+import OrderCompletePage from './pages/orderCompletePage/OrderCompletePage';
 //context
 import { AuthProvider } from './contexts/AuthContext';
 import { IdProvider } from './contexts/IdContext';
@@ -44,6 +45,10 @@ function App() {
                     <Route
                       path='/info-checkout'
                       element={<InfoCheckoutPage />}
+                    />
+                    <Route
+                      path='/order-complete'
+                      element={<OrderCompletePage />}
                     />
                   </Routes>
                 </PriceProvider>

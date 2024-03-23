@@ -53,9 +53,25 @@
       cursor: pointer;
     }
 
-    .logout-group {
+    .logout-group,
+    .login-group {
       display: flex;
       align-items: center;
+
+      .user-sec {
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        margin-right: 18px;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 600;
+
+        img {
+          width: 24px;
+          height: 100%;
+        }
+      }
     }
 
     .auth-btn {

@@ -56,4 +56,21 @@
       }
     }
   }
+
+  .checkout-action {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 90px;
+
+    width: 100%;
+    .checkout-btn {
+      color: #fff;
+      background-color: #000;
+      height: 46px;
+      border-radius: 6px;
+      font-weight: 600;
+      //margin-top: 18px;
+      width: 276px;
+    }
+  }
 }
