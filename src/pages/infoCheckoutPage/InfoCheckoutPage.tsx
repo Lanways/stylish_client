@@ -1,9 +1,11 @@
 //react
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 //component
 import HeaderDestop from '../../components/headerDestop/HeaderDestop';
 import Input from '../../components/input/Input';
+//api
+import { postOrder } from '../../api/checkout';
 //type
 import { Category } from '../../types/type';
 //style
@@ -18,6 +20,8 @@ const InfoCheckoutPage = () => {
     setCategoryId(id);
   };
   //header - end
+
+  const navigate = useNavigate();
 
   // data from previous page
   const { state } = useLocation();
@@ -34,7 +38,27 @@ const InfoCheckoutPage = () => {
     };
   });
 
-  const shippingFeeId = state.shippingId[0]?.id;
+  //const shippingFeeId = state.shippingId[0]?.id;
+
+  const handleCheckout = async () => {
+    const formate = {
+      total: state?.total,
+      recipient: recipient,
+      address: address,
+      number: number,
+      payment: state?.paymentMethod,
+      orderItems: orderItems,
+      shippingFeeId: state?.shippingId[0]?.id,
+    };
+
+    const res = await postOrder(formate);
+    console.log(res);
+    if (res?.status === 200) {
+      navigate('/order-complete', {
+        state: state?.total,
+      });
+    }
+  };
 
   return (
     <div className='Info-checkout-page-container'>
@@ -94,6 +118,9 @@ const InfoCheckoutPage = () => {
             <div className='payment-total'>合計: NT${state.total}</div>
           </div>
         </div>
+      </div>
+      <div className='checkout-action' onClick={handleCheckout}>
+        <button className='checkout-btn'>送出訂單</button>
       </div>
     </div>
   );

@@ -69,12 +69,12 @@ const ProductFilter: React.FC<ProductFilterProps> = (props) => {
               >
                 價格低至高
               </Dropdown.Item>
-              <Dropdown.Item
+              {/* <Dropdown.Item
                 href='#/action-1'
                 onClick={() => props?.setItemOrderBy('all')}
               >
                 所有商品
-              </Dropdown.Item>
+              </Dropdown.Item> */}
             </Dropdown.Menu>
           </Dropdown>
         </div>

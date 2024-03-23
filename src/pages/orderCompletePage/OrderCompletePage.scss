@@ -1,0 +1,42 @@
+.order-complete-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 120px;
+  .order-complete-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 500;
+
+    .complete {
+      padding-top: 10px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .price {
+      padding-top: 12px;
+    }
+
+    .status {
+      padding-top: 4px;
+    }
+
+    img {
+      width: 32px;
+      height: auto;
+    }
+
+    .navigate {
+      padding: 8px 14px;
+      color: #fff;
+      margin-top: 20px;
+      cursor: pointer;
+      background-color: #53b735;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+  }
+}

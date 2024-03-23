@@ -88,8 +88,8 @@ const MainPage: React.FC = () => {
     case 'highest':
       {
         const byOrder = items?.products?.sort((a: Product, b: Product) => {
-          const itemA: any = new Date(a.price);
-          const itemB: any = new Date(b.price);
+          const itemA: any = Number(a.price);
+          const itemB: any = Number(b.price);
           return itemB - itemA;
         });
         content = byOrder?.map?.((item: Product) => (
@@ -100,8 +100,8 @@ const MainPage: React.FC = () => {
     case 'lowest':
       {
         const byOrder = items?.products?.sort((a: Product, b: Product) => {
-          const itemA: any = new Date(a.price);
-          const itemB: any = new Date(b.price);
+          const itemA: any = Number(a.price);
+          const itemB: any = Number(b.price);
           return itemA - itemB;
         });
         content = byOrder?.map?.((item: Product) => (
@@ -236,7 +236,7 @@ const MainPage: React.FC = () => {
         categoryAll={category}
       />
       <div className='title'>
-        <h1 className='medium-20 sec-title'>本月新品</h1>
+        <h1 className='medium-20 sec-title'>歡迎訂購</h1>
       </div>
       <ProductFilter
         setLimit={setLimit}

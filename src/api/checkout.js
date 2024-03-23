@@ -13,15 +13,15 @@ export const getShipping = async () => {
   }
 };
 
-export const postOrder = async (
+export const postOrder = async ({
   total,
   recipient,
   address,
   number,
   payment,
   orderItems,
-  shippingFeeId
-) => {
+  shippingFeeId,
+}) => {
   try {
     const data = await axiosInstance.post(`${baseUrl}/order`, {
       order: {
@@ -41,7 +41,7 @@ export const postOrder = async (
       orderItems: orderItems,
       shippingFeeId: shippingFeeId,
     });
-    console.log(data);
+    return data;
   } catch (error) {
     console.error('[Order Failed]:', error);
   }
