@@ -21,9 +21,10 @@ export const postOrder = async ({
   payment,
   orderItems,
   shippingFeeId,
+  email
 }) => {
   try {
-    const data = await axiosInstance.post(`${baseUrl}/order`, {
+    const data = await axiosInstance.post(`${baseUrl}/order/encryption`, {
       order: {
         totalPrice: total,
         status: 'Pending',
@@ -40,9 +41,20 @@ export const postOrder = async ({
       },
       orderItems: orderItems,
       shippingFeeId: shippingFeeId,
+      email
     });
     return data;
   } catch (error) {
     console.error('[Order Failed]:', error);
   }
 };
+
+export const checkOrder = async (id) => {
+  try {
+    const { data } = await axios.get(`${baseUrl}/order/check/${id}`);
+    console.log(data);
+    return data.data;
+  } catch (error) {
+    console.error('checkorder error', error);
+  }
+}

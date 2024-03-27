@@ -10,6 +10,7 @@ import { postOrder } from '../../api/checkout';
 import { Category } from '../../types/type';
 //style
 import './InfoCheckoutPage.scss';
+import { checkOrder } from '../../api/checkout';
 
 const InfoCheckoutPage = () => {
   //header - start
@@ -31,6 +32,7 @@ const InfoCheckoutPage = () => {
   const [recipient, setRecipient] = useState('');
   const [number, setNumber] = useState('');
   const [address, setAddress] = useState('');
+  const [email, setEmail] = useState('');
 
   const orderItems = state?.skuIds?.map((id: number, i: number) => {
     return {
@@ -42,7 +44,7 @@ const InfoCheckoutPage = () => {
   //const shippingFeeId = state.shippingId[0]?.id;
 
   const handleCheckout = async () => {
-    if (recipient !== '' && number !== '' && address !== '') {
+    if (recipient !== '' && number !== '' && address !== '' && email !== '') {
       setHasError(false);
       const formate = {
         total: state?.total,
@@ -52,14 +54,15 @@ const InfoCheckoutPage = () => {
         payment: state?.paymentMethod,
         orderItems: orderItems,
         shippingFeeId: state?.shippingId[0]?.id,
+        email: email
       };
-
+      console.log('email', email)
       const res = await postOrder(formate);
-      console.log(res);
+
       if (res?.status === 200) {
-        navigate('/order-complete', {
-          state: state?.total,
-        });
+        const orderId = res.data.data.TimeStamp
+        const orderDetails = await checkOrder(orderId);
+        navigate('/order-form', { state: { orderDetails } })
       }
     } else {
       setHasError(true);
@@ -109,6 +112,14 @@ const InfoCheckoutPage = () => {
                 onChange={(addressInputValue: string) =>
                   setAddress(addressInputValue)
                 }
+              />
+              <Input
+                label='電子郵件'
+                type='email'
+                name='email'
+                placeholder='請輸入您的電子郵件'
+                value={email}
+                onChange={(emailInputValue: string) => setEmail(emailInputValue)}
               />
             </div>
           </div>
