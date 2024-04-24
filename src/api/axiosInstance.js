@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export const baseUrl = 'https://www.ezstylish.com/api';
+export const baseUrl = process.env.NODE_ENV === "development"
+  ? 'http://localhost:3000/api'
+  : 'https://www.ezstylish.com/api'
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,
