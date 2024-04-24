@@ -41,7 +41,7 @@ export const postOrder = async ({
       },
       orderItems: orderItems,
       shippingFeeId: shippingFeeId,
-      email
+      email: email
     });
     return data;
   } catch (error) {
@@ -51,8 +51,8 @@ export const postOrder = async ({
 
 export const checkOrder = async (id) => {
   try {
-    const { data } = await axios.get(`${baseUrl}/order/check/${id}`);
-    console.log(data);
+    const { data } = await axiosInstance.get(`${baseUrl}/order/check/${id}`);
+    // console.log('checkOrder', data);
     return data.data;
   } catch (error) {
     console.error('checkorder error', error);

@@ -19,8 +19,10 @@ const defaultAuthContext = {
 const AuthContext = createContext(defaultAuthContext);
 export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
+  // 使用 useState 鉤子來追蹤使用者的登入狀態和當前使用者的資料
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [payload, setPayload] = useState(null);
+  // 使用 useLocation 鉤子來獲取當前的 URL 路徑
   const { pathname } = useLocation();
 
   useEffect(() => {

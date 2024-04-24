@@ -56,9 +56,7 @@ const InfoCheckoutPage = () => {
         shippingFeeId: state?.shippingId[0]?.id,
         email: email
       };
-      console.log('email', email)
       const res = await postOrder(formate);
-
       if (res?.status === 200) {
         const orderId = res.data.data.TimeStamp
         const orderDetails = await checkOrder(orderId);
